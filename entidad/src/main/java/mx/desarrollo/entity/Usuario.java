@@ -5,58 +5,47 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuarios")
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idusuario", nullable = false)
-    private Integer id;
+    @Column(name = "idUsuarios", nullable = false)
+    private Integer idUsuarios;
+
 
     @Size(max = 45)
     @NotNull
-    @Column(name = "correo", nullable = false, length = 45)
-    private String correo;
-
-    @Size(max = 45)
-    @NotNull
-    @Column(name = "contrasena", nullable = false, length = 45)
-    private String contrasena;
+    @Column(name = "password", nullable = false, length = 45)
+    private String password;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idAlumno", nullable = false)
-    private Alumno idAlumno;
+    @Column(name = "nombreUsuario", nullable = false)
+    private String nombreUsuario;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdUsuario() {
+        return idUsuarios;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdUsuario(Integer id) {
+        this.idUsuarios = id;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getPassword() {
+        return password;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario= nombreUsuario;
     }
 
-    public Alumno getIdAlumno() {
-        return idAlumno;
-    }
-
-    public void setIdAlumno(Alumno idAlumno) {
-        this.idAlumno = idAlumno;
-    }
 
 }

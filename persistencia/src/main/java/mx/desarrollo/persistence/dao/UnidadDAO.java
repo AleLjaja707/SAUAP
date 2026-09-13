@@ -1,15 +1,16 @@
 package mx.desarrollo.persistence.dao;
 
 import jakarta.persistence.EntityManager;
+import mx.desarrollo.entity.Unidad_aprendizaje;
 import mx.desarrollo.entity.Usuario;
 import mx.desarrollo.persistence.persistence.AbstractDAO;
 
-public class UsuarioDAO extends AbstractDAO<Usuario> {
+public class UnidadDAO extends AbstractDAO<Unidad_aprendizaje> {
 
     private final EntityManager entityManager;
 
-    public UsuarioDAO(EntityManager em) {
-        super(Usuario.class);
+    public UnidadDAO(EntityManager em) {
+        super(Unidad_aprendizaje.class);
         this.entityManager = em;
     }
 

@@ -1,49 +1,52 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mx.desarrollo.persistence.integration;
 
 import jakarta.persistence.EntityManager;
-import mx.desarrollo.persistence.dao.AlumnoDAO;
+import mx.desarrollo.persistence.dao.asignacionDAO;
+import mx.desarrollo.persistence.dao.ProfesorDAO;
+import mx.desarrollo.persistence.dao.UnidadDAO;
 import mx.desarrollo.persistence.dao.UsuarioDAO;
 import mx.desarrollo.persistence.persistence.HibernateUtil;
 
-/**
- *
- * @author total
- */
 public class ServiceLocator {
 
-    private static AlumnoDAO alumnoDAO;
+    private static ProfesorDAO profesorDAO;
     private static UsuarioDAO usuarioDAO;
+    private static UnidadDAO unidadAprendizajeDAO;
+    private static asignacionDAO asignacionDAO;
 
-    private static EntityManager getEntityManager(){
+    private static EntityManager getEntityManager() {
         return HibernateUtil.getEntityManager();
     }
 
-    /**
-     * se crea la instancia para alumno DAO si esta no existe
-     */
-    public static AlumnoDAO getInstanceAlumnoDAO(){
-        if(alumnoDAO == null){
-            alumnoDAO = new AlumnoDAO(getEntityManager());
-            return alumnoDAO;
-        } else{
-            return alumnoDAO;
+    public static ProfesorDAO getInstanceProfesorDAO() {
+        if (profesorDAO == null) {
+            profesorDAO = new ProfesorDAO(getEntityManager());
         }
+
+        return profesorDAO;
     }
-    /**
-     * se crea la instancia de usuarioDAO si esta no existe
-     */
-    public static UsuarioDAO getInstanceUsuarioDAO(){
-        if(usuarioDAO == null){
+
+    public static UsuarioDAO getInstanceUsuarioDAO() {
+        if (usuarioDAO == null) {
             usuarioDAO = new UsuarioDAO(getEntityManager());
-            return usuarioDAO;
-        } else{
-            return usuarioDAO;
         }
+
+        return usuarioDAO;
     }
-    
+
+    public static UnidadDAO getInstanceUnidadAprendizajeDAO() {
+        if (unidadAprendizajeDAO == null) {
+            unidadAprendizajeDAO = new UnidadDAO(getEntityManager());
+        }
+
+        return unidadAprendizajeDAO;
+    }
+
+    public static asignacionDAO getInstanceAsignacionDAO() {
+        if (asignacionDAO == null) {
+            asignacionDAO = new asignacionDAO(getEntityManager());
+        }
+
+        return asignacionDAO;
+    }
 }
