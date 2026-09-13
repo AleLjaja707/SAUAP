@@ -11,7 +11,7 @@
         <class>mx.desarrollo.entity.Profesor</class>
         <class>mx.desarrollo.entity.Usuario</class>
         <class>mx.desarrollo.entity.Unidad_aprendizaje</class>
-        <class>mx.desarrollo.entity.asignacion</class>
+        <class>mx.desarrollo.entity.Asignacion</class>
 
 
         <properties>
