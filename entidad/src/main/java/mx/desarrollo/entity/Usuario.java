@@ -23,6 +23,19 @@ public class Usuario {
     @Column(name = "nombreUsuario", nullable = false)
     private String nombreUsuario;
 
+    @Size(max = 50)
+    @NotNull
+    @Column(name = "correo", nullable = false, length = 50)
+    private String correo;
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
     public Integer getIdUsuario() {
         return idUsuarios;
     }

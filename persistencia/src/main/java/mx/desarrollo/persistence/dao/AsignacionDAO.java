@@ -4,11 +4,11 @@ import jakarta.persistence.EntityManager;
 import mx.desarrollo.entity.Asignacion;
 import mx.desarrollo.persistence.persistence.AbstractDAO;
 
-public class asignacionDAO extends AbstractDAO<Asignacion> {
+public class AsignacionDAO extends AbstractDAO<Asignacion> {
 
     private final EntityManager entityManager;
 
-    public asignacionDAO(EntityManager em) {
+    public AsignacionDAO(EntityManager em) {
         super(Asignacion.class);
         this.entityManager = em;
     }

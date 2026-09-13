@@ -40,9 +40,9 @@ public class LoginBeanUI implements Serializable{
         String appURL = "/index.xhtml";
         // los atributos de usuario vienen del xhtml 
         Usuario us= new Usuario();
-        us.setId(0);
-        us = loginHelper.Login(usuario.getCorreo(), usuario.getContrasena());
-          if(us != null && us.getId()!=null){
+        us.setIdUsuario(0);
+        us = loginHelper.Login(usuario.getCorreo(), usuario.getPassword());
+          if(us != null && us.getIdUsuario()!=null){
             // asigno el usuario encontrado al usuario de esta clase para que 
             // se muestre correctamente en la pagina de informacion
             usuario=us;

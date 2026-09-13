@@ -6,6 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
+        <h:outputStylesheet library="primefaces-saga" name="theme.css"/>
     </h:head>
     <h:body>
         <p:panelGrid class="txt">
@@ -14,6 +15,7 @@
                     <p:column colspan="7"><p:graphicImage url="resources/user.png" class="logo"/></p:column>
                 </p:row>
             </f:facet>
+            <!--
             <p:row>
                 <p:column styleClass="celda">Nombre:</p:column>
                 <p:column><h:outputText value="#{loginUI.usuario.idAlumno.nombre}" /></p:column>
@@ -26,6 +28,7 @@
                 <p:column styleClass="celda">Matricula:</p:column>
                 <p:column><h:outputText value="#{loginUI.usuario.idAlumno.matricula}" /></p:column>
             </p:row>
+            -->
         </p:panelGrid>
     </h:body>
     <style>

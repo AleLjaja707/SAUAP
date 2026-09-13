@@ -1,7 +1,7 @@
 package mx.desarrollo.persistence.integration;
 
 import jakarta.persistence.EntityManager;
-import mx.desarrollo.persistence.dao.asignacionDAO;
+import mx.desarrollo.persistence.dao.AsignacionDAO;
 import mx.desarrollo.persistence.dao.ProfesorDAO;
 import mx.desarrollo.persistence.dao.UnidadDAO;
 import mx.desarrollo.persistence.dao.UsuarioDAO;
@@ -12,7 +12,7 @@ public class ServiceLocator {
     private static ProfesorDAO profesorDAO;
     private static UsuarioDAO usuarioDAO;
     private static UnidadDAO unidadAprendizajeDAO;
-    private static asignacionDAO asignacionDAO;
+    private static AsignacionDAO asignacionDAO;
 
     private static EntityManager getEntityManager() {
         return HibernateUtil.getEntityManager();
@@ -42,9 +42,9 @@ public class ServiceLocator {
         return unidadAprendizajeDAO;
     }
 
-    public static asignacionDAO getInstanceAsignacionDAO() {
+    public static AsignacionDAO getInstanceAsignacionDAO() {
         if (asignacionDAO == null) {
-            asignacionDAO = new asignacionDAO(getEntityManager());
+            asignacionDAO = new AsignacionDAO(getEntityManager());
         }
 
         return asignacionDAO;
