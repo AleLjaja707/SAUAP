@@ -10,7 +10,7 @@ public class Asignacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idAsignacion", nullable = false)
     private Integer idAsignacion;
-
+    /****/
 
     @NotNull
     @Column(name = "idProfesor", nullable = false)
