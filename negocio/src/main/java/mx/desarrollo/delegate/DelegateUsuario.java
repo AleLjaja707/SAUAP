@@ -19,7 +19,8 @@ public class DelegateUsuario {
         return usuario;
     }
 
-    public void saveUsario(Usuario usuario){
+    public void saveUsuario(Usuario usuario){
+
         ServiceLocator.getInstanceUsuarioDAO().save(usuario);
     }
 

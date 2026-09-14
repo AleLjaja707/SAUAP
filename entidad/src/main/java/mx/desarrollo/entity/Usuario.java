@@ -52,13 +52,5 @@ public class Usuario {
         this.password = password;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario= nombreUsuario;
-    }
-
 
 }
