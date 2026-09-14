@@ -28,6 +28,11 @@ public class DelegateUnidadAprendizaje {
         ServiceLocator.getInstanceUnidadAprendizajeDAO().delete(unidad);
     }
 
+    //modificar unidad
+    public void modificarUnidad(Unidad_aprendizaje unidad) {
+        ServiceLocator.getInstanceUnidadAprendizajeDao().update(unidad);
+    }
+
 
 
     //validar la unidad
