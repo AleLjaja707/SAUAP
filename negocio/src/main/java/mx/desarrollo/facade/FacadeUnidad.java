@@ -20,6 +20,10 @@ public class FacadeUnidad {
         delegateUnidad.eliminarUnidad(unidad);
     }
 
+    public void modificarUnidad(Unidad_aprendizaje unidad) {
+        delegateUnidad.modificarUnidad(unidad);
+    }
+
     public List<Unidad_aprendizaje> obtenerUnidades() {
         return delegateUnidad.getUnidadesAprendizaje();
     }

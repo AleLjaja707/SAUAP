@@ -30,7 +30,7 @@ public class DelegateUnidadAprendizaje {
 
     //modificar unidad
     public void modificarUnidad(Unidad_aprendizaje unidad) {
-        ServiceLocator.getInstanceUnidadAprendizajeDao().update(unidad);
+        ServiceLocator.getInstanceUnidadAprendizajeDAO().update(unidad);
     }
 
 

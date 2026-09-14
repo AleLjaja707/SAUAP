@@ -8,5 +8,5 @@ public class DelegateProfesor {
     public void saveProfesor(Profesor profesor){
         ServiceLocator.getInstanceProfesorDAO().save(profesor);
     }
-/**holafefe**/
+
 }
