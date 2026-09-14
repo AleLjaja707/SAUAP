@@ -13,22 +13,23 @@ public class Profesor {
     private Integer idProfesor;
 
     @NotNull
-    @Column(name = "rfc", nullable = false)
+    @Size(min = 12, max = 13 )
+    @Column(name = "rfc", nullable = false, length = 13)
     private String rfc;
 
-    @Size(max = 45)
+    @Size(max = 50)
     @NotNull
-    @Column(name = "nombre", nullable = false, length = 45)
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
 
-    @Size(max = 45)
+    @Size(max = 50)
     @NotNull
-    @Column(name = "apellidoM", nullable = false, length = 45)
+    @Column(name = "apellidoM", nullable = false, length = 50)
     private String apellidoM;
 
-    @Size(max = 45)
+    @Size(max = 50)
     @NotNull
-    @Column(name = "apellidoP", nullable = false, length = 45)
+    @Column(name = "apellidoP", nullable = false, length = 50)
     private String apellidoP;
 
 
