@@ -10,23 +10,23 @@ public class DelegateAsignacion {
     //CRUD DE ASIGNACIONES
 
     public boolean asignarMateria(Integer idProfesor, Integer idUnidadAprendizaje, String diaSemana, Integer horaInicio, Integer horaFin){
-      List<Asignacion> asignaciones = ServiceLocator.getInstanceAsignacionDAO().findAll();
+          List<Asignacion> asignaciones = ServiceLocator.getInstanceAsignacionDAO().findAll();
 
-      for(Asignacion asignacion : asignaciones){
-          if(asignacion.getIdProfesor().equals(idProfesor) && asignacion.getIdUnidadA().equals(idUnidadAprendizaje) && asignacion.getDiaSemana().equals(diaSemana) && asignacion.getHorasInicio().equals(horaInicio) && asignacion.getHorasFin().equals(horaFin) ){
-            return false;
+          for(Asignacion asignacion : asignaciones){
+              if(asignacion.getIdProfesor().equals(idProfesor) && asignacion.getIdUnidadA().equals(idUnidadAprendizaje) && asignacion.getDiaSemana().equals(diaSemana) && asignacion.getHorasInicio().equals(horaInicio) && asignacion.getHorasFin().equals(horaFin) ){
+                return false;
+              }
           }
-      }
 
-      Asignacion nuevaAsignacion = new Asignacion();
-      nuevaAsignacion.setIdProfesor(idProfesor);
-      nuevaAsignacion.setIdUnidadA(idUnidadAprendizaje);
-      nuevaAsignacion.setDiaSemana(diaSemana);
-      nuevaAsignacion.setHorasInicio(horaInicio);
-      nuevaAsignacion.setHorasFin(horaFin);
+          Asignacion nuevaAsignacion = new Asignacion();
+          nuevaAsignacion.setIdProfesor(idProfesor);
+          nuevaAsignacion.setIdUnidadA(idUnidadAprendizaje);
+          nuevaAsignacion.setDiaSemana(diaSemana);
+          nuevaAsignacion.setHorasInicio(horaInicio);
+          nuevaAsignacion.setHorasFin(horaFin);
 
-      ServiceLocator.getInstanceAsignacionDAO().save(nuevaAsignacion);
-      return true;
+          ServiceLocator.getInstanceAsignacionDAO().save(nuevaAsignacion);
+          return true;
     }
 
 

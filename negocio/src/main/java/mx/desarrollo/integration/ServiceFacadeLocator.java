@@ -1,6 +1,7 @@
 package mx.desarrollo.integration;
 
 import mx.desarrollo.facade.FacadeProfesor;
+import mx.desarrollo.facade.FacadeUnidad;
 import mx.desarrollo.facade.FacadeUsuario;
 import mx.desarrollo.facade.FacadeAsignacion;
 
@@ -9,6 +10,7 @@ public class ServiceFacadeLocator {
     private static FacadeProfesor facadeProfesor;
     private static FacadeUsuario facadeUsuario;
     private static FacadeAsignacion facadeAsignacion;
+    private static FacadeUnidad facadeUnidad;
 
     public static FacadeProfesor getInstanceFacadeProfesor() {
         if (facadeProfesor == null) {
@@ -34,6 +36,15 @@ public class ServiceFacadeLocator {
             return facadeAsignacion;
         } else {
             return facadeAsignacion;
+        }
+    }
+
+    public static FacadeUnidad getInstanceFacadeUnidad() {
+        if (facadeUnidad == null) {
+            facadeUnidad = new FacadeUnidad();
+            return facadeUnidad;
+        } else {
+            return facadeUnidad;
         }
     }
 

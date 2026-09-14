@@ -1,8 +1,11 @@
 package mx.desarrollo.delegate;
 
+import mx.desarrollo.entity.Asignacion;
 import mx.desarrollo.entity.Unidad_aprendizaje;
 import mx.desarrollo.persistence.integration.ServiceLocator;
 import org.eclipse.persistence.jpa.jpql.tools.spi.IEntity;
+
+import java.util.List;
 
 public class DelegateUnidadAprendizaje {
 
@@ -13,7 +16,19 @@ public class DelegateUnidadAprendizaje {
             ServiceLocator.getInstanceUnidadAprendizajeDAO().save(unidad);
         }
 
-        }
+    }
+
+    //consultar unidades existentes
+    public List<Unidad_aprendizaje> getUnidadesAprendizaje() {
+        return ServiceLocator.getInstanceUnidadAprendizajeDAO().findAll();
+    }
+
+    //eliminar unidades
+    public void eliminarUnidad(Unidad_aprendizaje unidad){
+        ServiceLocator.getInstanceUnidadAprendizajeDAO().delete(unidad);
+    }
+
+
 
     //validar la unidad
     public boolean  validarUnidad(Unidad_aprendizaje unidad){
