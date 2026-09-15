@@ -39,7 +39,7 @@ public class DelegateUnidadAprendizaje {
     public boolean  validarUnidad(Unidad_aprendizaje unidad){
 
         //validar todos sus atributos
-        if(unidad.getNombre() == null || unidad.getNombre().equals("")){
+        if(unidad.getNombre() == null || unidad.getNombre().equals("") || unidad.getNombre().length()>50){
             return false;
         }
         if(unidad.getHorasLab()<0 || unidad.getHorasLab()>4){
