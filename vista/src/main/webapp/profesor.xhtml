@@ -7,28 +7,34 @@
     <h:head>
         <title>Registro de Profesor</title>
         <!--<h:outputStylesheet library="primefaces-saga" name="theme.css"/>-->
-        <h:outputStylesheet name ="style.css" />
+        <link rel="stylesheet"  type="text/css"  href="resources/css/style.css"/>
     </h:head>
 
     <h:body>
         <h:form>
-            <div class="menu_lateral" style="background-color: #F8EDEB; ">
-                <div class="logo_sauap"><img src="resources/logoAz.png" width="50" height="50"> </img><span style="font-size: 30px; font-weight: bold; text-align: center;">SAUAP</span></div><br/>
-                <p:button value="Alta de profesores" outcome="profesor" styleClass="menu_btn"/>
-                <p:button value="Unidades de aprendizaje" outcome="unidad" styleClass="menu_btn" />
-                <p:button value="Asignacion de materias" outcome="asignacion" styleClass="menu_btn" />
-                <p:button value="Consultas" outcome="consultas" styleClass="menu_btn" />
+            <div class="menu_lateral">
+
+                <div class="logo_sauap"><img src="resources/logoAz.png" width="50" height="50"/><span style="font-size: 40px; font-weight: bold;">SAUAP</span></div>
+
+                <div class="menu_opciones">
+                    <h:link outcome="profesor" styleClass="menu_btn"><img src="resources/iconAgreProfe.png" width="30" height="30"/> <span style="font-size: 20px; font-weight: bold;">Alta de profesores</span></h:link>
+                    <h:link outcome="unidad" styleClass="menu_btn"><img src="resources/iconAgreMateria.png" width="30" height="30"/> <span style="font-size: 20px; font-weight: bold;">Unidad de aprendizaje</span></h:link>
+                    <h:link outcome="asignacion" styleClass="menu_btn"><img src="resources/iconAsignar.png" width="30" height="30"/> <span style="font-size: 20px; font-weight: bold;">Asignaciones</span></h:link>
+                    <h:link outcome="consultas" styleClass="menu_btn"><img src="resources/iconConsultar.png" width="30" height="30"/> <span style="font-size: 20px; font-weight: bold;">Consultas</span></h:link>
+                </div>
+
+                <h:link outcome="login" styleClass="menu_btn cerrar_sesion"><img src="resources/iconSalir.png" width="30" height="30"/><span style="font-size: 20px; font-weight: bold;">Cerrar Sesión</span></h:link>
 
             </div>
         </h:form>
 
-<!--Hice un push incorrecto, quiero ver si asi funciona-->
+<!--Hice un push incorrecto , quiero ver si asi funciona-->
 
         <div class="contenido">
             <h1>Registro de Profesor</h1>
             <p>Aqui se colocan los datos y el form</p>
         </div>
-        <h:form/>
+
     </h:body>
 
 

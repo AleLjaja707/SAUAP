@@ -7,27 +7,90 @@
     <h:head>
         <title>SAUAP</title>
        <!-- <h:outputStylesheet library="primefaces-saga" name="theme.css"/>-->
-        <h:outputStylesheet name ="style.css" />
+        <link rel="stylesheet"  type="text/css"  href="resources/css/style.css"/>
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background-color: #F8EDEB; !important;
+                color: #5b4747;
+            }
+
+
+            /* =========================
+               MENÚ SUPERIOR
+               ========================= */
+
+            .menu_superior {
+                display: flex;
+                align-items: center;
+                gap: 30px;
+                padding: 15px 25px;
+                background-color: #ffffff; !important;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .menu_superior .menu_btn {
+                flex: 1;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                padding: 12px 16px;
+
+                background-color: transparent;
+                border: none;
+                border-radius: 6px;
+
+                color: #5b4747;
+                font-size: 16px;
+                font-weight: 600;
+                text-decoration: none;
+
+                text-align: center;
+            }
+
+            .menu_superior .menu_btn:hover {
+                background-color: #ffffff;
+            }
+
+            /* =========================
+               CONTENIDO PRINCIPAL
+               ========================= */
+
+            .principal {
+                text-align: center;
+                margin-top: 0;
+
+                min-height: calc(100vh - 75px);
+                background-image: url("#{request.contextPath}/resources/fondo.png");
+                background-size: contain;
+                background-color: #F8EDEB; !important;
+                background-position: center;
+                background-repeat: no-repeat;
+
+                padding-top: 150px;
+                box-sizing: border-box;
+            }
+        </style>
     </h:head>
 
     <h:body>
         <h:form>
-            <div class="menu_superior" style="background-color: #F8EDEB;">
-                <p:button value="Alta de profesores" outcome="profesor" styleClass="menu_btn"/>
-                <p:button value="Unidades de aprendizaje" outcome="unidad" styleClass="menu_btn" />
-                <p:button value="Asignacion de materias" outcome="asignacion" styleClass="menu_btn" />
-                <p:button value="Consultas" outcome="consultas" styleClass="menu_btn" />
+            <div class="menu_superior"  style="background-color: #ffffff;">
+                <h:link value="Alta de profesores" outcome="profesor" styleClass="menu_btn" style="font-size: 20px; font-weight: bold;"/>
+                <h:link value="Unidades de aprendizaje" outcome="unidad" styleClass="menu_btn" style="font-size: 20px; font-weight: bold;" />
+                <h:link value="Asignacion de materias" outcome="asignacion" styleClass="menu_btn" style="font-size: 20px; font-weight: bold;" />
+                <h:link value="Consultas" outcome="consultas" styleClass="menu_btn" style="font-size: 20px; font-weight: bold;" />
 
             </div>
         </h:form>
 
         <div class="principal">
-            <h1>SAUAP</h1>
-            <p>Sistema de Asignacion de Unidad de Aprendizaje a Profesores</p>
+
         </div>
 
     </h:body>
 
-
 </html>
-
