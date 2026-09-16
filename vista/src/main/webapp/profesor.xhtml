@@ -5,14 +5,15 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>SAUAP</title>
-       <!-- <h:outputStylesheet library="primefaces-saga" name="theme.css"/>-->
+        <title>Registro de Profesor</title>
+        <!--<h:outputStylesheet library="primefaces-saga" name="theme.css"/>-->
         <h:outputStylesheet name ="style.css" />
     </h:head>
 
     <h:body>
         <h:form>
-            <div class="menu_superior" style="background-color: #F8EDEB;">
+            <div class="menu_lateral" style="background-color: #F8EDEB; ">
+                <div class="logo_sauap"><img src="resources/logoAz.png" width="50" height="50"> </img><span style="font-size: 30px; font-weight: bold; text-align: center;">SAUAP</span></div><br/>
                 <p:button value="Alta de profesores" outcome="profesor" styleClass="menu_btn"/>
                 <p:button value="Unidades de aprendizaje" outcome="unidad" styleClass="menu_btn" />
                 <p:button value="Asignacion de materias" outcome="asignacion" styleClass="menu_btn" />
@@ -21,11 +22,13 @@
             </div>
         </h:form>
 
-        <div class="principal">
-            <h1>SAUAP</h1>
-            <p>Sistema de Asignacion de Unidad de Aprendizaje a Profesores</p>
-        </div>
 
+
+        <div class="contenido">
+            <h1>Registro de Profesor</h1>
+            <p>Aqui se colocan los datos y el form</p>
+        </div>
+        <h:form/>
     </h:body>
 
 

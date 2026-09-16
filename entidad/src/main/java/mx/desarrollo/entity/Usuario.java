@@ -19,10 +19,6 @@ public class Usuario {
     @Column(name = "password", nullable = false, length = 45)
     private String password;
 
-    @NotNull
-    @Column(name = "nombreUsuario", nullable = false)
-    private String nombreUsuario;
-
     @Size(max = 50)
     @NotNull
     @Column(name = "correo", nullable = false, length = 50)
