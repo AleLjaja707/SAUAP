@@ -13,7 +13,7 @@ import mx.desarrollo.integration.ServiceFacadeLocator;
 
 import java.io.Serializable;
 
-public class LoginHelper implements Serializable {
+    public class LoginHelper implements Serializable {
     
 
     /**

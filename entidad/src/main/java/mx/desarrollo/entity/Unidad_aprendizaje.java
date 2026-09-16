@@ -12,7 +12,7 @@ public class Unidad_aprendizaje {
     @Column(name = "idUnidad_Aprendizaje", nullable = false)
     private Integer idUnidad;
 
-    @Size(max = 45)
+    @Size(max = 50)
     @NotNull
     @Column(name = "nombre", nullable = false)
     private String nombre;
