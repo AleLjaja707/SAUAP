@@ -6,6 +6,8 @@ import mx.desarrollo.facade.FacadeUnidad;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 
+import java.util.List;
+
 @Named
 @RequestScoped
 public class UnidadABean {
@@ -31,6 +33,15 @@ public void guardarUnidad(){
     facade.agregarUnidad(unidad);
     System.out.println("BEAN: guardarUnidad");
 }
+
+    //Consultar lista de unidades
+    public List<Unidad_aprendizaje> getUnidades(){
+        FacadeUnidad facade = new FacadeUnidad();
+    //llamar a facade
+    return facade.obtenerUnidades();
+    }
+
+
 
     //GETTERS Y SETTERS
     public int getHorasClase() {return horasClase;}

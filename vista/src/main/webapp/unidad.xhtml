@@ -28,56 +28,95 @@
         </div>
     </h:form>
 
-<div class="contenido">
+    <div class="contenido">
 
-    <h1>Registro de Unidad Académica</h1>
+        <h1>Registro de Unidad Académica</h1>
 
-    <h:form>
+        <!-- Formulario de registro + tabla -->
+        <h:form>
 
-        <h2>Datos de Unidad de Aprendizaje</h2>
+            <h2>Datos de Unidad de Aprendizaje</h2>
 
-        <div style="display: flex; gap: 25px; align-items: flex-end;">
+            <div style="display: flex; gap: 25px; align-items: flex-end;">
 
-            <div>
-                <p:outputLabel value="Nombre de la unidad*" />
-                <br/>
+                <div>
+                    <p:outputLabel value="Nombre de la unidad*"/>
+                    <br/>
 
-                <p:inputText value="#{unidadABean.nombre}"
-                              placeholder="Ej. Programación" />
+                    <p:inputText value="#{unidadABean.nombre}"
+                                 placeholder="Ej. Programación"/>
+                </div>
+
+                <div>
+                    <p:outputLabel value="Horas de clase*"/>
+                    <br/>
+
+                    <p:spinner value="#{unidadABean.horasClase}"
+                               min="0"
+                               max="4"/>
+                </div>
+
+                <div>
+                    <p:outputLabel value="Horas de taller*"/>
+                    <br/>
+
+                    <p:spinner value="#{unidadABean.horasTaller}"
+                               min="0"
+                               max="4"/>
+                </div>
+
+                <div>
+                    <p:outputLabel value="Horas de laboratorio*"/>
+                    <br/>
+
+                    <p:spinner value="#{unidadABean.horasLab}"
+                               min="0"
+                               max="4"/>
+                </div>
+
             </div>
 
-            <div>
-                <p:outputLabel value="Horas de clase*" />
-                <br/>
-                <p:spinner value="#{unidadABean.horasClase}" min="0" max="4" />
+            <br/>
 
-            </div>
+            <p:commandButton value="Guardar"
+                             action="#{unidadABean.guardarUnidad}"
+                             update="tablaUnidades"/>
 
-            <div>
-                <p:outputLabel value="Horas de taller*" />
-                <br/>
-                <p:spinner value="#{unidadABean.horasTaller}" min="0" max="4" />
 
-            </div>
+            <h:outputText value="Unidades de Aprendizaje Registradas"
+                          style="font-size: 24px;
+                                 font-weight: bold;
+                                 display: block;
+                                 margin: 25px 0 15px;"/>
 
-            <div>
-                <p:outputLabel value="Horas de laboratorio*" />
-                <br/>
-                <p:spinner value="#{unidadABean.horasLab}" min="0" max="4" />
 
-            </div>
+            <p:dataTable id="tablaUnidades"
+                         value="#{unidadABean.unidades}"
+                         var="unidad"
+                         style="max-width: 800px;">
 
-        </div>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{unidad.nombre}"/>
+                </p:column>
 
-        <br/>
+                <p:column headerText="Horas de Clase">
+                    <h:outputText value="#{unidad.horasClase}"/>
+                </p:column>
 
-        <p:commandButton value="Guardar"
-                         action="#{unidadABean.guardarUnidad}" />
+                <p:column headerText="Horas de Taller">
+                    <h:outputText value="#{unidad.horasTaller}"/>
+                </p:column>
 
-    </h:form>
+                <p:column headerText="Horas de Laboratorio">
+                    <h:outputText value="#{unidad.horasLab}"/>
+                </p:column>
 
-</div>
+            </p:dataTable>
+
+        </h:form>
+
+    </div>
+
 </h:body>
 
 </html>
-
