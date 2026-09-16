@@ -14,6 +14,8 @@ public class FacadeUnidad {
 
     public void agregarUnidad(Unidad_aprendizaje unidad) {
         delegateUnidad.saveUnidadAprendizaje(unidad);
+        System.out.println("facade: agregarUnidad");
+
     }
 
     public void eliminarUnidad(Unidad_aprendizaje unidad) {

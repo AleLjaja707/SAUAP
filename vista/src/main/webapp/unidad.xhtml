@@ -22,11 +22,55 @@
         </div>
     </h:form>
 
-    <div class="contenido">
-        <h1>Registro de Unidad Académica</h1>
-        <p>Aqui se colocan los datos y el form</p>
-    </div>
+<div class="contenido">
 
+    <h1>Registro de Unidad Académica</h1>
+
+    <h:form>
+
+        <h2>Datos de Unidad de Aprendizaje</h2>
+
+        <div style="display: flex; gap: 25px; align-items: flex-end;">
+
+            <div>
+                <p:outputLabel value="Nombre de la unidad*" />
+                <br/>
+
+                <p:inputText value="#{unidadABean.nombre}"
+                              placeholder="Ej. Programación" />
+            </div>
+
+            <div>
+                <p:outputLabel value="Horas de clase*" />
+                <br/>
+                <p:spinner value="#{unidadABean.horasClase}" min="0" max="4" />
+
+            </div>
+
+            <div>
+                <p:outputLabel value="Horas de taller*" />
+                <br/>
+                <p:spinner value="#{unidadABean.horasTaller}" min="0" max="4" />
+
+            </div>
+
+            <div>
+                <p:outputLabel value="Horas de laboratorio*" />
+                <br/>
+                <p:spinner value="#{unidadABean.horasLab}" min="0" max="4" />
+
+            </div>
+
+        </div>
+
+        <br/>
+
+        <p:commandButton value="Guardar"
+                         action="#{unidadABean.guardarUnidad}" />
+
+    </h:form>
+
+</div>
 </h:body>
 
 </html>

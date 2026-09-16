@@ -14,6 +14,8 @@ public class DelegateUnidadAprendizaje {
         //usar metodo
         if(validarUnidad(unidad) == true) {
             ServiceLocator.getInstanceUnidadAprendizajeDAO().save(unidad);
+            System.out.println("delegate: save");
+
         }
 
     }
