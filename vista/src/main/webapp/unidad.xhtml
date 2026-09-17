@@ -32,13 +32,16 @@
 
         <h1>Registro de Unidad Académica</h1>
 
+
+
         <!-- Formulario de registro + tabla -->
         <h:form>
 
             <h2>Datos de Unidad de Aprendizaje</h2>
 
-            <div style="display: flex; gap: 25px; align-items: flex-end;">
-
+        <h:panelGroup id="formularioUnidad"
+                      layout="block"
+                      style="display: flex; gap: 25px; align-items: flex-end;">
                 <div>
                     <p:outputLabel value="Nombre de la unidad*"/>
                     <br/>
@@ -74,13 +77,25 @@
                                max="4"/>
                 </div>
 
-            </div>
+        </h:panelGroup>
 
             <br/>
 
             <p:commandButton value="Guardar"
                              action="#{unidadABean.guardarUnidad}"
                              update="tablaUnidades"/>
+
+
+            <p:commandButton value="Eliminar"
+                             action="#{unidadABean.eliminarUnidad}"
+                             update="tablaUnidades"/>
+
+            <p:commandButton id="botonModificar"
+                             value="Modificar"
+                             action="#{unidadABean.modificarUnidad}"
+                             process="formularioUnidad"
+                             update="formularioUnidad tablaUnidades"
+                             disabled="#{unidadABean.unidadSeleccionada == null}"/>
 
 
             <h:outputText value="Unidades de Aprendizaje Registradas"
@@ -93,7 +108,14 @@
             <p:dataTable id="tablaUnidades"
                          value="#{unidadABean.unidades}"
                          var="unidad"
-                         style="max-width: 800px;">
+                         style="max-width: 800px;"
+                         selection="#{unidadABean.unidadSeleccionada}"
+                         rowKey="#{unidad.idUnidad}"
+                         selectionMode="single">
+
+                <p:ajax event="rowSelect"
+                        listener="#{unidadABean.cargarUnidadSeleccionada}"
+                        update="@form"/>
 
                 <p:column headerText="Nombre">
                     <h:outputText value="#{unidad.nombre}"/>
