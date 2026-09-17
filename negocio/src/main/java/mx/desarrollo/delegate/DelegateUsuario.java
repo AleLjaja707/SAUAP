@@ -11,7 +11,7 @@ public class DelegateUsuario {
         List<Usuario> usuarios = ServiceLocator.getInstanceUsuarioDAO().findAll();
 
         for(Usuario us:usuarios){
-            if(us.getCorreo().equalsIgnoreCase(password) && us.getPassword().equalsIgnoreCase(correo)){
+            if(us.getCorreo().equalsIgnoreCase(correo) && us.getPassword().equalsIgnoreCase(password)){
                 return us;
             }
         }
