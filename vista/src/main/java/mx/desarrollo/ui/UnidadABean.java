@@ -1,5 +1,7 @@
 package mx.desarrollo.ui;
 
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
@@ -26,20 +28,18 @@ public class UnidadABean implements Serializable {
     private String filtroNombre;
 
     //eliminar unidad
-    private String mensaje;
-    private boolean error;
 
     public void eliminarUnidad(){
         if(unidadSeleccionada != null) {
             try {
                 FacadeUnidad facade = new FacadeUnidad();
                 facade.eliminarUnidad(unidadSeleccionada);
-                mensaje = "Unidad de aprendizaje eliminada correctamente";
-                error = false;
+
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Exito", "Unidad de aprendizaje eliminada correctamente"));
                 unidadSeleccionada = null;
             } catch (IllegalArgumentException e) {
-                mensaje = e.getMessage();
-                error = true;
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
             }
         }
 
@@ -146,10 +146,4 @@ public void guardarUnidad(){
     public void setFiltroNombre(String filtroNombre) {this.filtroNombre = filtroNombre;}
     public String getFiltroNombre() {return filtroNombre;}
 
-    public String getMensaje(){
-        return mensaje;
-    }
-    public boolean isError(){
-        return error;
-    }
 }
