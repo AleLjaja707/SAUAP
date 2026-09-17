@@ -44,7 +44,7 @@ public class DelegateUnidadAprendizaje {
         if(unidad.getNombre() == null || unidad.getNombre().equals("") || unidad.getNombre().length()>50){
             return false;
         }
-        if(unidad.getHorasLab()<0 || unidad.getHorasLab()>4){
+        if(unidad.getHorasLaboratorio()<0 || unidad.getHorasLaboratorio()>4){
             return false;
         }
         if(unidad.getHorasClase()<0 || unidad.getHorasClase()>4){

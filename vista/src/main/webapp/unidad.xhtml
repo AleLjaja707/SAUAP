@@ -35,7 +35,7 @@
 
 
         <!-- Formulario de registro + tabla -->
-        <h:form>
+        <h:form id="formUnidad">
 
             <h2>Datos de Unidad de Aprendizaje</h2>
 
@@ -83,19 +83,19 @@
 
             <p:commandButton value="Guardar"
                              action="#{unidadABean.guardarUnidad}"
-                             update="tablaUnidades @form"
+                             update=":formUnidad:tablaUnidades :formUnidad:formularioUnidad"
                              resetValues="true"/>
 
 
             <p:commandButton value="Eliminar"
                              action="#{unidadABean.eliminarUnidad}"
-                             update="tablaUnidades"/>
+                             update=":formUnidad:tablaUnidades"/>
 
             <p:commandButton id="botonModificar"
                              value="Modificar"
                              action="#{unidadABean.modificarUnidad}"
-                             process="formularioUnidad"
-                             update="formularioUnidad tablaUnidades"
+                             process="@this :formUnidad:formularioUnidad"
+                             update=":formUnidad:formularioUnidad :formUnidad:tablaUnidades :formUnidad:botonModificar"
                              disabled="#{unidadABean.unidadSeleccionada == null}"/>
 
 
@@ -116,7 +116,7 @@
 
                 <p:ajax event="rowSelect"
                         listener="#{unidadABean.cargarUnidadSeleccionada}"
-                        update="@form"/>
+                        update=":formUnidad:formularioUnidad :formUnidad:botonModificar"/>
 
                 <p:column headerText="Nombre">
                     <h:outputText value="#{unidad.nombre}"/>
@@ -131,7 +131,7 @@
                 </p:column>
 
                 <p:column headerText="Horas de Laboratorio">
-                    <h:outputText value="#{unidad.horasLab}"/>
+                    <h:outputText value="#{unidad.horasLaboratorio}"/>
                 </p:column>
 
             </p:dataTable>

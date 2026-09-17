@@ -1,29 +1,37 @@
 package mx.desarrollo.ui;
 
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 import mx.desarrollo.entity.Unidad_aprendizaje;
 import mx.desarrollo.facade.FacadeUnidad;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Named;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Named
-@RequestScoped
-public class UnidadABean {
+@ViewScoped
+public class UnidadABean implements Serializable {
 
-    private  String nombre;
-    private  int horasClase;
-    private  int horasTaller;
-    private  int horasLab;
+    private static final long serialVersionUID = 1L;
 
-    //unidad seleccionada de la tabla de consultas
+    private int idUnidad;
+    private String nombre;
+    private int horasClase;
+    private int horasTaller;
+    private int horasLaboratorio;
+
     private Unidad_aprendizaje unidadSeleccionada;
+
 
     //eliminar unidad
     public void eliminarUnidad(){
-        FacadeUnidad facade = new FacadeUnidad();
-        facade.eliminarUnidad(unidadSeleccionada);
+        if(unidadSeleccionada != null){
+            FacadeUnidad facade = new FacadeUnidad();
+            facade.eliminarUnidad(unidadSeleccionada);
+            unidadSeleccionada = null;
+        }
+
     }
 
     //obtener los cambios realizados a la unidad
@@ -31,22 +39,27 @@ public class UnidadABean {
             unidadSeleccionada.setNombre(nombre);
             unidadSeleccionada.setHorasClase(horasClase);
             unidadSeleccionada.setHorasTaller(horasTaller);
-            unidadSeleccionada.setHorasLab(horasLab);
+            unidadSeleccionada.setHorasLaboratorio(horasLaboratorio);
         }
 
 
     public void cargarUnidadSeleccionada() {
-        nombre = unidadSeleccionada.getNombre();
-        horasClase = unidadSeleccionada.getHorasClase();
-        horasTaller = unidadSeleccionada.getHorasTaller();
-        horasLab = unidadSeleccionada.getHorasLab();
+        if(unidadSeleccionada != null){
+            nombre = unidadSeleccionada.getNombre();
+            horasClase = unidadSeleccionada.getHorasClase();
+            horasTaller = unidadSeleccionada.getHorasTaller();
+            horasLaboratorio = unidadSeleccionada.getHorasLaboratorio();
+            idUnidad = unidadSeleccionada.getIdUnidad();
+        }
     }
 
     //Modificar Unidad
     public void modificarUnidad() {
-        cargarUnidadSeleccionada();
-        FacadeUnidad facade = new FacadeUnidad();
+        if (unidadSeleccionada != null) {
+            setNuevosAtributos();
+            FacadeUnidad facade = new FacadeUnidad();
             facade.modificarUnidad(unidadSeleccionada);
+        }
         }
 
 
@@ -57,7 +70,7 @@ public void guardarUnidad(){
     unidad.setNombre(nombre);
     unidad.setHorasClase(horasClase);
     unidad.setHorasTaller(horasTaller);
-    unidad.setHorasLab(horasLab);
+    unidad.setHorasLaboratorio(horasLaboratorio);
 
     FacadeUnidad facade = new FacadeUnidad();
     //llamar a facade
@@ -79,14 +92,17 @@ public void guardarUnidad(){
 
 
     //GETTERS Y SETTERS
+    public int getIdUnidad() {return idUnidad;}
+    public void setIdUnidad(int idUnidad) {this.idUnidad = idUnidad;}
+
     public int getHorasClase() {return horasClase;}
     public void setHorasClase(int horasClase) {this.horasClase = horasClase;}
 
     public int getHorasTaller() {return horasTaller;}
     public void setHorasTaller(int horasTaller) {this.horasTaller = horasTaller;}
 
-    public int getHorasLab() {return horasLab;}
-    public void setHorasLab(int horasLab) {this.horasLab = horasLab;}
+    public int getHorasLab() {return horasLaboratorio;}
+    public void setHorasLab(int horasLaboratorio) {this.horasLaboratorio = horasLaboratorio;}
 
     public String getNombre() {return nombre;}
     public void setNombre(String nombre) {this.nombre = nombre;}

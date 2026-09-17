@@ -54,13 +54,14 @@ public class Unidad_aprendizaje {
         this.horasClase = horasClase;
     }
 
-    public Integer getHorasLab() {
+    public Integer getHorasLaboratorio() {
         return horasLaboratorio;
     }
 
-    public void setHorasLab(Integer horasLab) {
-        this.horasLaboratorio = horasLab;
+    public void setHorasLaboratorio(Integer horasLaboratorio) {
+        this.horasLaboratorio = horasLaboratorio;
     }
+
     public Integer getHorasTaller() {
         return horasTaller;
     }
