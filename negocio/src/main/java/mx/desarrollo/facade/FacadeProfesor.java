@@ -3,7 +3,10 @@ package mx.desarrollo.facade;
 import mx.desarrollo.delegate.DelegateProfesor;
 import mx.desarrollo.delegate.DelegateUsuario;
 import mx.desarrollo.entity.Profesor;
+import mx.desarrollo.entity.Unidad_aprendizaje;
 import mx.desarrollo.entity.Usuario;
+
+import java.util.List;
 
 public class FacadeProfesor {
     private final DelegateProfesor delegateProfesor;
@@ -26,6 +29,10 @@ public class FacadeProfesor {
             throw new IllegalArgumentException("RFC no valido");
         }
         delegateProfesor.saveProfesor(profesor);
+    }
+
+    public List<Profesor> obtenerProfesores() {
+        return delegateProfesor.getProfesor();
     }
 
 }

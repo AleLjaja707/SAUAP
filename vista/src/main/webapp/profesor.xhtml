@@ -14,16 +14,16 @@
         <h:form>
             <div class="menu_lateral">
 
-                <div class="logo_sauap"><img src="resources/logoAz.png" width="50" height="50"/><span style="font-size: 40px; font-weight: bold;">SAUAP</span></div>
+                <div class="logo_sauap"><img src="resources/images/logoAz.png" width="50" height="50"/><span style="font-size: 40px; font-weight: bold;">SAUAP</span></div>
 
                 <div class="menu_opciones">
-                    <h:link outcome="profesor" styleClass="menu_btn"><img src="resources/iconAgreProfe.png" width="30" height="30"/> <span style="font-size: 20px; font-weight: bold;">Alta de profesores</span></h:link>
-                    <h:link outcome="unidad" styleClass="menu_btn"><img src="resources/iconAgreMateria.png" width="30" height="30"/> <span style="font-size: 20px; font-weight: bold;">Unidad de aprendizaje</span></h:link>
-                    <h:link outcome="asignacion" styleClass="menu_btn"><img src="resources/iconAsignar.png" width="30" height="30"/> <span style="font-size: 20px; font-weight: bold;">Asignaciones</span></h:link>
-                    <h:link outcome="consultas" styleClass="menu_btn"><img src="resources/iconConsultar.png" width="30" height="30"/> <span style="font-size: 20px; font-weight: bold;">Consultas</span></h:link>
+                    <h:link outcome="profesor" styleClass="menu_btn"><img src="resources/images/iconAgreProfe.png" width="30" height="30"/> <span style="font-size: 20px; font-weight: bold;">Alta de profesores</span></h:link>
+                    <h:link outcome="unidad" styleClass="menu_btn"><img src="resources/images/iconAgreMateria.png" width="30" height="30"/> <span style="font-size: 20px; font-weight: bold;">Unidad de aprendizaje</span></h:link>
+                    <h:link outcome="asignacion" styleClass="menu_btn"><img src="resources/images/iconAsignar.png" width="30" height="30"/> <span style="font-size: 20px; font-weight: bold;">Asignaciones</span></h:link>
+                    <h:link outcome="consultas" styleClass="menu_btn"><img src="resources/images/iconConsultar.png" width="30" height="30"/> <span style="font-size: 20px; font-weight: bold;">Consultas</span></h:link>
                 </div>
 
-                <h:link outcome="login" styleClass="menu_btn cerrar_sesion"><img src="resources/iconSalir.png" width="30" height="30"/><span style="font-size: 20px; font-weight: bold;">Cerrar Sesión</span></h:link>
+                <h:link outcome="login" styleClass="menu_btn cerrar_sesion"><img src="resources/images/iconSalir.png" width="30" height="30"/><span style="font-size: 20px; font-weight: bold;">Cerrar Sesión</span></h:link>
 
             </div>
         </h:form>
@@ -31,8 +31,25 @@
 <!--Hice un push incorrecto , quiero ver si asi funciona-->
 
         <div class="contenido">
-            <h1>Registro de Profesor</h1>
-            <p>Aqui se colocan los datos y el form</p>
+            <h1>Registro de Unidad Académica</h1>
+
+            <!-- Formulario de registro + tabla -->
+            <h:form>
+
+            <h2>Datos de Unidad de Aprendizaje</h2>
+
+            <div style="display: flex; gap: 25px; align-items: flex-end;">
+                <div><p:outputLabel value="Nombre*"/><br/><p:inputText value="#{profesorBean.nombre}" placeholder="Ej. Alejandro"/></div>
+                <div><p:outputLabel value="Apellido paterno*"/><br/><p:inputText value="#{profesorBean.apellidoPaterno}" placeholder="Ej. Rojas"/></div>
+                <div><p:outputLabel value="Apellido materno*"/><br/><p:inputText value="#{profesorBean.apellidoMaterno}" placeholder="Ej. Lopez"/></div>
+                <div><p:outputLabel value="RFC*"/><br/><p:inputText value="#{profesorBean.rfc}" placeholder="Ej. LOGJ580812RH7"/></div>
+            </div>
+
+            <br/>
+
+            <p:commandButton value="Guardar" action="#{profesorBean.guardarProfesor}" update="@form" resetValues="true"/>
+
+            </h:form>
         </div>
 
     </h:body>
