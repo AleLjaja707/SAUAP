@@ -45,6 +45,9 @@ public class DelegateAsignacion {
         ServiceLocator.getInstanceAsignacionDAO().delete(asignacion);
     }
 
+    public List<Asignacion> buscarPorUnidad(Integer idUnidad){
+        return ServiceLocator.getInstanceAsignacionDAO().findByOneParameter(idUnidad, "idUnidadAprendizaje");
+    }
     //traslape
 
     public boolean traslape(int idProfesor, String diaSemana, int horaInicio, int horaFin){

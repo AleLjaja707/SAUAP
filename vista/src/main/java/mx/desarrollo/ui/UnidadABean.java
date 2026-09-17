@@ -26,13 +26,31 @@ public class UnidadABean implements Serializable {
     private String filtroNombre;
 
     //eliminar unidad
+    private String mensaje;
+    private boolean error;
+
     public void eliminarUnidad(){
-        if(unidadSeleccionada != null){
-            FacadeUnidad facade = new FacadeUnidad();
-            facade.eliminarUnidad(unidadSeleccionada);
-            unidadSeleccionada = null;
+        if(unidadSeleccionada != null) {
+            try {
+                FacadeUnidad facade = new FacadeUnidad();
+                facade.eliminarUnidad(unidadSeleccionada);
+                mensaje = "Unidad de aprendizaje eliminada correctamente";
+                error = false;
+                unidadSeleccionada = null;
+            } catch (IllegalArgumentException e) {
+                mensaje = e.getMessage();
+                error = true;
+            }
         }
 
+    }
+    //getters para la vista
+    public String getMensaje(){
+        return mensaje;
+    }
+
+    public boolean isError(){
+        return error;
     }
 
     //obtener los cambios realizados a la unidad
