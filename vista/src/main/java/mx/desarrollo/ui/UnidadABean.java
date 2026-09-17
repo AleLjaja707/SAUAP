@@ -44,14 +44,8 @@ public class UnidadABean implements Serializable {
         }
 
     }
-    //getters para la vista
-    public String getMensaje(){
-        return mensaje;
-    }
 
-    public boolean isError(){
-        return error;
-    }
+
 
     //obtener los cambios realizados a la unidad
     public void setNuevosAtributos(){
@@ -151,4 +145,11 @@ public void guardarUnidad(){
 
     public void setFiltroNombre(String filtroNombre) {this.filtroNombre = filtroNombre;}
     public String getFiltroNombre() {return filtroNombre;}
+
+    public String getMensaje(){
+        return mensaje;
+    }
+    public boolean isError(){
+        return error;
+    }
 }
