@@ -4,23 +4,69 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
+
 <h:head>
     <title>Unidades de Aprendizaje</title>
-    <!--<h:outputStylesheet library="primefaces-saga" name="theme.css"/>-->
-    <link rel="stylesheet"  type="text/css"  href="resources/css/style.css"/>
+
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css"/>
+
+    <style>
+
+        .registro {
+            color: #594646;
+            background-color: #FFFFFF;
+            padding: 25px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            max-width: 1100px;
+        }
+
+        .btn_guardar {
+            display: inline-block;
+            background-color: #c9ddfd;
+            color: #594646;
+            padding: 12px 25px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn_guardar:hover {
+            background-color: #EBF0F8;
+            color: #594646;
+        }
+
+        .labels {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+        }
+
+    </style>
 </h:head>
 
 <h:body>
+
     <h:form>
         <div class="menu_lateral">
 
-            <div class="logo_sauap"><img src="resources/images/logoAz.png" width="50" height="50"/><span style="font-size: 40px; font-weight: bold;">SAUAP</span></div>
+            <div class="logo_sauap"> <img src="resources/images/logoAz.png" width="50" height="50"/><span style="font-size: 40px; font-weight: bold;">SAUAP</span></div>
 
             <div class="menu_opciones">
-                <h:link outcome="profesor" styleClass="menu_btn"><img src="resources/images/iconAgreProfe.png" width="30" height="30"/> <span style="font-size: 20px; font-weight: bold;">Alta de profesores</span></h:link>
-                <h:link outcome="unidad" styleClass="menu_btn"><img src="resources/images/iconAgreMateria.png" width="30" height="30"/> <span style="font-size: 20px; font-weight: bold;">Unidad de aprendizaje</span></h:link>
-                <h:link outcome="asignacion" styleClass="menu_btn"><img src="resources/images/iconAsignar.png" width="30" height="30"/> <span style="font-size: 20px; font-weight: bold;">Asignaciones</span></h:link>
-                <h:link outcome="consultas" styleClass="menu_btn"><img src="resources/images/iconConsultar.png" width="30" height="30"/> <span style="font-size: 20px; font-weight: bold;">Consultas</span></h:link>
+
+                <h:link outcome="profesor" styleClass="menu_btn"><img src="resources/images/iconAgreProfe.png" width="30" height="30"/><span style="font-size: 20px; font-weight: bold;">Alta de profesores</span></h:link>
+                <h:link outcome="unidad" styleClass="menu_btn"><img src="resources/images/iconAgreMateria.png" width="30" height="30"/><span style="font-size: 20px; font-weight: bold;">Unidad de aprendizaje</span></h:link>
+                <h:link outcome="asignacion" styleClass="menu_btn"><img src="resources/images/iconAsignar.png" width="30" height="30"/><span style="font-size: 20px; font-weight: bold;">Asignaciones</span></h:link>
+                <h:link outcome="consultas" styleClass="menu_btn"><img src="resources/images/iconConsultar.png" width="30" height="30"/><span style="font-size: 20px; font-weight: bold;">Consultas</span></h:link>
             </div>
 
             <h:link outcome="login" styleClass="menu_btn cerrar_sesion"><img src="resources/images/iconSalir.png" width="30" height="30"/><span style="font-size: 20px; font-weight: bold;">Cerrar Sesión</span></h:link>
@@ -28,118 +74,56 @@
         </div>
     </h:form>
 
+
     <div class="contenido">
-
         <h1>Registro de Unidad Académica</h1>
+        <!-- CUADRO DE DATOS DE UNIDAD -->
+        <div class="registro">
+            <h:form id="formUnidad">
+                <h2>Datos de Unidad de Aprendizaje</h2>
+
+                <h:panelGroup id="formularioUnidad" layout="block" style="display: flex; gap: 30px; align-items: flex-start;">
+
+                    <div class="campo"><p:outputLabel value="Nombre de la unidad*" styleClass="labels"/><p:inputText value="#{unidadABean.nombre}" placeholder="Ej. Programación"/></div>
+                    <div class="campo"><p:outputLabel value="Horas de clase*" styleClass="labels"/><p:spinner value="#{unidadABean.horasClase}" min="0" max="4"/><h:outputText value="(0 - 4)"/></div>
+                    <div class="campo"><p:outputLabel value="Horas de taller*" styleClass="labels"/><p:spinner value="#{unidadABean.horasTaller}" min="0" max="4"/><h:outputText value="(0 - 4)"/></div>
+                    <div class="campo"><p:outputLabel value="Horas de laboratorio*" styleClass="labels"/><p:spinner value="#{unidadABean.horasLab}" min="0" max="4"/><h:outputText value="(0 - 4)"/></div>
+                </h:panelGroup>
+
+            <div style="margin-top: 25px; display: flex; gap: 15px;">
+
+                <p:commandButton value="Guardar" action="#{unidadABean.guardarUnidad}" update="formularioUnidad :formTabla:tablaUnidades" resetValues="true"/>
+                <p:commandButton value="Eliminar" action="#{unidadABean.eliminarUnidad}" update=":formTabla:tablaUnidades"/>
+                <p:commandButton id="botonModificar" value="Modificar" action="#{unidadABean.modificarUnidad}" process="@form" update=":formTabla:tablaUnidades formularioUnidad botonModificar" disabled="#{unidadABean.unidadSeleccionada == null}"/>
+            </div>
+            </h:form>
+        </div>
+        <br/><br/><br/><br/>
+
+        <div style="display: flex;align-items: center;justify-content: space-between;max-width: 1000px;margin-bottom: 15px;">
+            <h1 style="margin: 15px;">Unidades de Aprendizaje Registradas</h1>
 
 
+            <h:form id="formBusqueda"><p:inputText id="buscador" value="#{unidadABean.filtroNombre}" placeholder="Nombre de la unidad">
+                <p:ajax event="keyup" process="@this" update=":formTabla:tablaUnidades"/></p:inputText></h:form>
+        </div>
 
-        <!-- Formulario de registro + tabla -->
-        <h:form id="formUnidad">
+        <div class="registro">
 
-            <h2>Datos de Unidad de Aprendizaje</h2>
+            <h:form id="formTabla">
+                <p:dataTable id="tablaUnidades" value="#{unidadABean.buscarUnidades()}" var="unidad" style="max-width: 800px;" selection="#{unidadABean.unidadSeleccionada}" rowKey="#{unidad.idUnidad}" selectionMode="single" emptyMessage="No se encontraron unidades de aprendizaje">
+                    <p:ajax event="rowSelect" listener="#{unidadABean.cargarUnidadSeleccionada}" update=":formUnidad:formularioUnidad :formUnidad:botonModificar"/>
 
-        <h:panelGroup id="formularioUnidad"
-                      layout="block"
-                      style="display: flex; gap: 25px; align-items: flex-end;">
-                <div>
-                    <p:outputLabel value="Nombre de la unidad*"/>
-                    <br/>
+                    <p:column headerText="ID"><h:outputText value="#{unidad.idUnidad}"/></p:column>
+                    <p:column headerText="Nombre de la unidad"><h:outputText value="#{unidad.nombre}"/></p:column>
+                    <p:column headerText="Horas de Clase"><h:outputText value="#{unidad.horasClase}"/></p:column>
+                    <p:column headerText="Horas de Taller"><h:outputText value="#{unidad.horasTaller}"/></p:column>
+                    <p:column headerText="Horas de Laboratorio"><h:outputText value="#{unidad.horasLaboratorio}"/></p:column>
+                </p:dataTable>
 
-                    <p:inputText value="#{unidadABean.nombre}"
-                                 placeholder="Ej. Programación"/>
-                </div>
+            </h:form>
 
-                <div>
-                    <p:outputLabel value="Horas de clase*"/>
-                    <br/>
-
-                    <p:spinner value="#{unidadABean.horasClase}"
-                               min="0"
-                               max="4"/>
-                </div>
-
-                <div>
-                    <p:outputLabel value="Horas de taller*"/>
-                    <br/>
-
-                    <p:spinner value="#{unidadABean.horasTaller}"
-                               min="0"
-                               max="4"/>
-                </div>
-
-                <div>
-                    <p:outputLabel value="Horas de laboratorio*"/>
-                    <br/>
-
-                    <p:spinner value="#{unidadABean.horasLab}"
-                               min="0"
-                               max="4"/>
-                </div>
-
-        </h:panelGroup>
-
-            <br/>
-
-            <p:commandButton value="Guardar"
-                             action="#{unidadABean.guardarUnidad}"
-                             update=":formUnidad:tablaUnidades :formUnidad:formularioUnidad"
-                             resetValues="true"/>
-
-
-            <p:commandButton value="Eliminar"
-                             action="#{unidadABean.eliminarUnidad}"
-                             update=":formUnidad:tablaUnidades"/>
-
-            <p:commandButton id="botonModificar"
-                             value="Modificar"
-                             action="#{unidadABean.modificarUnidad}"
-                             process="@this :formUnidad:formularioUnidad"
-                             update=":formUnidad:formularioUnidad :formUnidad:tablaUnidades :formUnidad:botonModificar"
-                             disabled="#{unidadABean.unidadSeleccionada == null}"/>
-
-
-            <h:outputText value="Unidades de Aprendizaje Registradas"
-                          style="font-size: 24px;
-                                 font-weight: bold;
-                                 display: block;
-                                 margin: 25px 0 15px;"/>
-
-
-            <p:dataTable id="tablaUnidades"
-                         value="#{unidadABean.unidades}"
-                         var="unidad"
-                         style="max-width: 800px;"
-                         selection="#{unidadABean.unidadSeleccionada}"
-                         rowKey="#{unidad.idUnidad}"
-                         selectionMode="single">
-
-                <p:ajax event="rowSelect"
-                        listener="#{unidadABean.cargarUnidadSeleccionada}"
-                        update=":formUnidad:formularioUnidad :formUnidad:botonModificar"/>
-
-                <p:column headerText="Nombre">
-                    <h:outputText value="#{unidad.nombre}"/>
-                </p:column>
-
-                <p:column headerText="Horas de Clase">
-                    <h:outputText value="#{unidad.horasClase}"/>
-                </p:column>
-
-                <p:column headerText="Horas de Taller">
-                    <h:outputText value="#{unidad.horasTaller}"/>
-                </p:column>
-
-                <p:column headerText="Horas de Laboratorio">
-                    <h:outputText value="#{unidad.horasLaboratorio}"/>
-                </p:column>
-
-            </p:dataTable>
-
-        </h:form>
-
+        </div>
     </div>
-
 </h:body>
-
 </html>
