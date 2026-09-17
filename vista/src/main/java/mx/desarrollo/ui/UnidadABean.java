@@ -17,6 +17,38 @@ public class UnidadABean {
     private  int horasTaller;
     private  int horasLab;
 
+    //unidad seleccionada de la tabla de consultas
+    private Unidad_aprendizaje unidadSeleccionada;
+
+    //eliminar unidad
+    public void eliminarUnidad(){
+        FacadeUnidad facade = new FacadeUnidad();
+        facade.eliminarUnidad(unidadSeleccionada);
+    }
+
+    //obtener los cambios realizados a la unidad
+    public void setNuevosAtributos(){
+            unidadSeleccionada.setNombre(nombre);
+            unidadSeleccionada.setHorasClase(horasClase);
+            unidadSeleccionada.setHorasTaller(horasTaller);
+            unidadSeleccionada.setHorasLab(horasLab);
+        }
+
+
+    public void cargarUnidadSeleccionada() {
+        nombre = unidadSeleccionada.getNombre();
+        horasClase = unidadSeleccionada.getHorasClase();
+        horasTaller = unidadSeleccionada.getHorasTaller();
+        horasLab = unidadSeleccionada.getHorasLab();
+    }
+
+    //Modificar Unidad
+    public void modificarUnidad() {
+        cargarUnidadSeleccionada();
+        FacadeUnidad facade = new FacadeUnidad();
+            facade.modificarUnidad(unidadSeleccionada);
+        }
+
 
     //crear objeto
 public void guardarUnidad(){
@@ -28,10 +60,8 @@ public void guardarUnidad(){
     unidad.setHorasLab(horasLab);
 
     FacadeUnidad facade = new FacadeUnidad();
-
     //llamar a facade
     facade.agregarUnidad(unidad);
-    System.out.println("BEAN: guardarUnidad");
 }
 
     //Consultar lista de unidades
@@ -40,6 +70,11 @@ public void guardarUnidad(){
     //llamar a facade
     return facade.obtenerUnidades();
     }
+
+
+
+
+
 
 
 
@@ -55,4 +90,7 @@ public void guardarUnidad(){
 
     public String getNombre() {return nombre;}
     public void setNombre(String nombre) {this.nombre = nombre;}
+
+    public Unidad_aprendizaje getUnidadSeleccionada() {return unidadSeleccionada;}
+    public void setUnidadSeleccionada(Unidad_aprendizaje unidad) {this.unidadSeleccionada = unidad;}
 }
