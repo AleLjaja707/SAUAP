@@ -45,5 +45,21 @@ public class DelegateAsignacion {
         ServiceLocator.getInstanceAsignacionDAO().delete(asignacion);
     }
 
+    //traslape
+
+    public boolean traslape(int idProfesor, String diaSemana, int horaInicio, int horaFin){
+        List<Asignacion> asignaciones = ServiceLocator.getInstanceAsignacionDAO().findAll();
+
+        for (Asignacion asignacion: asignaciones) {
+            if(asignacion.getIdProfesor().equals(idProfesor) && asignacion.getDiaSemana().equals(diaSemana)) {
+
+                if(horaInicio< asignacion.getHorasFin() && horaFin> asignacion.getHorasInicio()) {
+
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 }
