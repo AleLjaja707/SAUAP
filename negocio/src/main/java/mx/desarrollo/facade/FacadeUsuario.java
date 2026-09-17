@@ -12,12 +12,24 @@ public class FacadeUsuario {
         this.delegateUsuario = new DelegateUsuario();
     }
 
-    public Usuario login(String password, String correo){
+    public Usuario login(String correo, String password){
+
+        if(correo == null || correo.isBlank()){
+            throw new IllegalArgumentException("El correo es obligatorio");
+        }
+        if (password == null || password.isBlank()) {
+            throw new IllegalArgumentException("La contraseña es obligatoria");
+        }
+
+        Usuario usuario = delegateUsuario.login(correo, password);
+        if (usuario == null) {
+            throw new IllegalArgumentException("Credenciales incorrectas");
+        }
 
         return delegateUsuario.login(password, correo);
     }
 
-    public void saveUsario(Usuario usuario){
+    public void saveUsuario(Usuario usuario){
 
         delegateUsuario.saveUsuario(usuario);
     }
