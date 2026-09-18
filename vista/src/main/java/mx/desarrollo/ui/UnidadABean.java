@@ -27,6 +27,8 @@ public class UnidadABean implements Serializable {
     private Unidad_aprendizaje unidadSeleccionada;
     private String filtroNombre;
 
+
+
     //eliminar unidad
 
     public void eliminarUnidad(){
@@ -145,5 +147,7 @@ public void guardarUnidad(){
 
     public void setFiltroNombre(String filtroNombre) {this.filtroNombre = filtroNombre;}
     public String getFiltroNombre() {return filtroNombre;}
+
+
 
 }

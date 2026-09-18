@@ -77,7 +77,6 @@
 
     <div class="contenido">
         <h1>Registro de Unidad Académica</h1>
-        <p:growl id="msgs" showDetail="true" sticky="false" life="4000" />
         <!-- CUADRO DE DATOS DE UNIDAD -->
         <div class="registro">
             <h:form id="formUnidad">
@@ -94,10 +93,16 @@
             <div style="margin-top: 25px; display: flex; gap: 15px;">
 
                 <p:commandButton value="Guardar" action="#{unidadABean.guardarUnidad}" update="formularioUnidad :formTabla:tablaUnidades" resetValues="true"/>
-                <p:commandButton value="Eliminar" action="#{unidadABean.eliminarUnidad}" update="msgs :formTabla:tablaUnidades"/>
+                <p:commandButton id="botonEliminar" value="Eliminar" update="msgs :formTabla:tablaUnidades" disabled="#{unidadABean.unidadSeleccionada == null}">
+                    <p:confirm header="Confirmar eliminación" message="¿Estás seguro de eliminar esta unidad de aprendizaje?" icon="pi pi-exclamation-triangle" />
+                </p:commandButton>
                 <p:commandButton id="botonModificar" value="Modificar" action="#{unidadABean.modificarUnidad}" process="@form" update=":formTabla:tablaUnidades formularioUnidad botonModificar" disabled="#{unidadABean.unidadSeleccionada == null}"/>
             </div>
             </h:form>
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true">
+            <p:commandButton value="Sí, eliminar" icon="pi pi-check" action="#{unidadABean.eliminarUnidad}" update="msgs :formTabla:tablaUnidades" oncomplete="PF('confirmDialog').hide()" />
+            <p:commandButton value="Cancelar" icon="pi pi-times" onclick="PF('confirmDialog').hide()" type="button" />
+        </p:confirmDialog>
         </div>
         <br/><br/><br/><br/>
 
