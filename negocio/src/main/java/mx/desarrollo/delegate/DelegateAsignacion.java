@@ -17,6 +17,7 @@ public class DelegateAsignacion {
                 boolean traslape = horaInicio < a.getHoraFin() && horaFin > a.getHoraInicio();
                 if (traslape) {
                     return false;
+
                 }
             }
         }
