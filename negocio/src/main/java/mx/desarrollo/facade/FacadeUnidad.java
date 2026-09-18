@@ -1,6 +1,8 @@
 package mx.desarrollo.facade;
 
+import mx.desarrollo.delegate.DelegateAsignacion;
 import mx.desarrollo.delegate.DelegateUnidadAprendizaje;
+import mx.desarrollo.entity.Asignacion;
 import mx.desarrollo.entity.Unidad_aprendizaje;
 
 import java.util.List;
@@ -19,6 +21,14 @@ public class FacadeUnidad {
     }
 
     public void eliminarUnidad(Unidad_aprendizaje unidad) {
+        //verifica que la unidad no este asignada an nadie
+        DelegateAsignacion delegateAsignacion = new DelegateAsignacion();
+        List<Asignacion> asignaciones = delegateAsignacion.buscarPorUnidad(unidad.getIdUnidad());
+
+        if(!asignaciones.isEmpty()){
+            throw new IllegalArgumentException("No se puede eliminar: La unidad ya esta asignada a un profesor");
+        }
+
         delegateUnidad.eliminarUnidad(unidad);
     }
 

@@ -23,7 +23,7 @@ import java.io.Serializable;
      * @return 
      */
     public Usuario Login(String correo, String password){
-        return ServiceFacadeLocator.getInstanceFacadeUsuario().login(password, correo);
+        return ServiceFacadeLocator.getInstanceFacadeUsuario().login(correo, password);
     }
     
     

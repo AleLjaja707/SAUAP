@@ -26,7 +26,7 @@ public class FacadeUsuario {
             throw new IllegalArgumentException("Credenciales incorrectas");
         }
 
-        return delegateUsuario.login(password, correo);
+        return delegateUsuario.login(correo, password);
     }
 
     public void saveUsuario(Usuario usuario){

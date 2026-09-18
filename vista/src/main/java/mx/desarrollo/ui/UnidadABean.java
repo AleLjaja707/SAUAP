@@ -1,5 +1,7 @@
 package mx.desarrollo.ui;
 
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
@@ -7,6 +9,7 @@ import mx.desarrollo.entity.Unidad_aprendizaje;
 import mx.desarrollo.facade.FacadeUnidad;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named
@@ -20,19 +23,29 @@ public class UnidadABean implements Serializable {
     private int horasClase;
     private int horasTaller;
     private int horasLaboratorio;
-
+    private List<Unidad_aprendizaje> unidadesFiltradas;
     private Unidad_aprendizaje unidadSeleccionada;
-
+    private String filtroNombre;
 
     //eliminar unidad
+
     public void eliminarUnidad(){
-        if(unidadSeleccionada != null){
-            FacadeUnidad facade = new FacadeUnidad();
-            facade.eliminarUnidad(unidadSeleccionada);
-            unidadSeleccionada = null;
+        if(unidadSeleccionada != null) {
+            try {
+                FacadeUnidad facade = new FacadeUnidad();
+                facade.eliminarUnidad(unidadSeleccionada);
+
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Exito", "Unidad de aprendizaje eliminada correctamente"));
+                unidadSeleccionada = null;
+            } catch (IllegalArgumentException e) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+            }
         }
 
     }
+
+
 
     //obtener los cambios realizados a la unidad
     public void setNuevosAtributos(){
@@ -57,6 +70,7 @@ public class UnidadABean implements Serializable {
     public void modificarUnidad() {
         if (unidadSeleccionada != null) {
             setNuevosAtributos();
+
             FacadeUnidad facade = new FacadeUnidad();
             facade.modificarUnidad(unidadSeleccionada);
         }
@@ -86,6 +100,25 @@ public void guardarUnidad(){
 
 
 
+    // Comparar los nombres de las unidades con el filtro de la lista
+    public List<Unidad_aprendizaje> buscarUnidades() {
+        //creamos una lista con las unidades y una nueva para hacerla comparacion
+        List<Unidad_aprendizaje> unidades = getUnidades();
+        List<Unidad_aprendizaje> unidadesFiltradas = new ArrayList<>();
+
+        // Validamos el filtro
+        if (filtroNombre == null || filtroNombre.isEmpty()) {
+            return unidades;
+        }
+        // Verificamos la lista completa de unidades
+        for (Unidad_aprendizaje unidad : unidades) {
+            if (unidad.getNombre().toLowerCase().contains(filtroNombre.toLowerCase())) {
+                unidadesFiltradas.add(unidad);
+            }
+        }
+        return unidadesFiltradas;
+    }
+
 
 
 
@@ -109,4 +142,8 @@ public void guardarUnidad(){
 
     public Unidad_aprendizaje getUnidadSeleccionada() {return unidadSeleccionada;}
     public void setUnidadSeleccionada(Unidad_aprendizaje unidad) {this.unidadSeleccionada = unidad;}
+
+    public void setFiltroNombre(String filtroNombre) {this.filtroNombre = filtroNombre;}
+    public String getFiltroNombre() {return filtroNombre;}
+
 }
