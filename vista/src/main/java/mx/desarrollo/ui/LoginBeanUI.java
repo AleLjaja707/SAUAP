@@ -38,6 +38,18 @@ public class LoginBeanUI implements Serializable{
 
      public void login() throws IOException{
         String appURL = "/index.xhtml";
+
+        if(usuario.getCorreo()==null || usuario.getCorreo().isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correo vacio","Ingresa tu correo"));
+
+            return;
+        }
+         if(usuario.getPassword()==null || usuario.getPassword().isEmpty()) {
+             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Contraseña vacia","Ingresa tu contraseña"));
+
+             return;
+         }
+
         // los atributos de usuario vienen del xhtml 
         Usuario us= new Usuario();
         us.setIdUsuario(0);
