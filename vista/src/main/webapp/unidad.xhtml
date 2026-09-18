@@ -77,6 +77,7 @@
 
     <div class="contenido">
         <h1>Registro de Unidad Académica</h1>
+        <p:growl id="msgs" showDetail="true" sticky="false" life="4000" />
         <!-- CUADRO DE DATOS DE UNIDAD -->
         <div class="registro">
             <h:form id="formUnidad">
@@ -99,12 +100,13 @@
                 <p:commandButton id="botonModificar" value="Modificar" action="#{unidadABean.modificarUnidad}" process="@form" update=":formTabla:tablaUnidades formularioUnidad botonModificar" disabled="#{unidadABean.unidadSeleccionada == null}"/>
             </div>
             </h:form>
-        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true">
-            <p:commandButton value="Sí, eliminar" icon="pi pi-check" action="#{unidadABean.eliminarUnidad}" update="msgs :formTabla:tablaUnidades" oncomplete="PF('confirmDialog').hide()" />
-            <p:commandButton value="Cancelar" icon="pi pi-times" onclick="PF('confirmDialog').hide()" type="button" />
-        </p:confirmDialog>
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true">
+                <p:commandButton value="Sí, eliminar" icon="pi pi-check" action="#{unidadABean.eliminarUnidad}" update="msgs :formTabla:tablaUnidades" oncomplete="PF('confirmDialog').hide()" />
+                <p:commandButton value="Cancelar" icon="pi pi-times" onclick="PF('confirmDialog').hide()" type="button" />
+            </p:confirmDialog>
         </div>
         <br/><br/><br/><br/>
+    </div>
 
         <div style="display: flex;align-items: center;justify-content: space-between;max-width: 1000px;margin-bottom: 15px;">
             <h1 style="margin: 15px;">Unidades de Aprendizaje Registradas</h1>
@@ -112,21 +114,19 @@
 
             <h:form id="formBusqueda"><p:inputText id="buscador" value="#{unidadABean.filtroNombre}" placeholder="Nombre de la unidad">
                 <p:ajax event="keyup" process="@this" update=":formTabla:tablaUnidades"/></p:inputText></h:form>
-        </div>
+
 
         <div class="registro">
 
             <h:form id="formTabla">
                 <p:dataTable id="tablaUnidades" value="#{unidadABean.buscarUnidades()}" var="unidad" style="max-width: 800px;" selection="#{unidadABean.unidadSeleccionada}" rowKey="#{unidad.idUnidad}" selectionMode="single" emptyMessage="No se encontraron unidades de aprendizaje">
-                    <p:ajax event="rowSelect" listener="#{unidadABean.cargarUnidadSeleccionada}" update=":formUnidad:formularioUnidad :formUnidad:botonModificar"/>
-
+                    <p:ajax event="rowSelect" listener="#{unidadABean.cargarUnidadSeleccionada}" update=":formUnidad:formularioUnidad :formUnidad:botonModificar :formUnidad:botonEliminar"/>
                     <p:column headerText="ID"><h:outputText value="#{unidad.idUnidad}"/></p:column>
                     <p:column headerText="Nombre de la unidad"><h:outputText value="#{unidad.nombre}"/></p:column>
                     <p:column headerText="Horas de Clase"><h:outputText value="#{unidad.horasClase}"/></p:column>
                     <p:column headerText="Horas de Taller"><h:outputText value="#{unidad.horasTaller}"/></p:column>
                     <p:column headerText="Horas de Laboratorio"><h:outputText value="#{unidad.horasLaboratorio}"/></p:column>
                 </p:dataTable>
-
             </h:form>
 
         </div>

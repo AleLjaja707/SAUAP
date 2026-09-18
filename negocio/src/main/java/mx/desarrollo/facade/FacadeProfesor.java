@@ -5,6 +5,7 @@ import mx.desarrollo.delegate.DelegateUsuario;
 import mx.desarrollo.entity.Profesor;
 import mx.desarrollo.entity.Unidad_aprendizaje;
 import mx.desarrollo.entity.Usuario;
+import java.util.Comparator;
 
 import java.util.List;
 
@@ -34,5 +35,13 @@ public class FacadeProfesor {
     public List<Profesor> obtenerProfesores() {
         return delegateProfesor.getProfesor();
     }
+
+    //ordena profesores por nombre
+    public List<Profesor> obtenerProfesoresOrdenados() {
+        List<Profesor> profesores = delegateProfesor.getProfesor();
+        profesores.sort(Comparator.comparing(Profesor::getNombre));
+        return profesores;
+    }
+
 
 }
