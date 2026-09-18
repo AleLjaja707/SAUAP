@@ -9,10 +9,7 @@
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="style.css" rel="stylesheet" type="text/css"/>
         <style>
-            
-            *{
-                text-align: center;
-            }
+
             .center{
                 float: none;
                 margin: 0 auto;
@@ -22,26 +19,60 @@
            
             div.login{
                 position: absolute;
-                top:0;
-                bottom: 0;
+                top:55%;
+                bottom: 50%;
                 left: 0;
                 right: 0;
-                height: 35%;
+                height: 50%;
                 width: 25%;
                 padding: 25px;
                 margin: auto;
-                background: white;
+                background: #F8EDEB;
                 border-radius: 5px;
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             }
             .logo{
+                display: block;
+                height:62px;
+                width: 75px;
+                margin: 0 auto;
+
+            }
+
+            .form-control {
+                color:#000;
+                text-align: left;
+                border: 2px #857A7A;
+            }
+
+            .form-control::placeholder {
+                color: #594646;
+                text-align: left;
+                opacity: 2;
+            }
+            .btn-login{
+                display: block;
+                color: #000;
                 width: 150px;
+                height: 40px;
+                text-align: center;
+                margin: 35px 0 auto;
+                background-color: #EBF0F8;
+              border-radius: 10px;
+                box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             }
-            .form-control:focus{
-                border-color:#007738;
+            label {
+                color:#594646;
+                text-align: left;
+                margin-bottom:10px;
             }
-            .btn-success{
-                text-shadow: none;
+
+            .titulo {
+                color:#6B4E4E;
+                text-align: center;
+                margin-top: 5px;
+                font-size: 36px;
+
             }
         </style>
     </h:head>
@@ -56,16 +87,19 @@
                 </p:messages>
                 <div class="login">
                     <div class="panel-header">
-                        <p:graphicImage url="resources/images/uabcl.png" class="logo" />
+                        <p:graphicImage url="resources/images/logoAz.png" class="logo" />
+                        <h2 class="titulo">SAUAP </h2>
                     </div>
                     <div class="panel-body">
                         <div class=" form-group">
-                            <p:inputText class ="form-control" placeholder ="Correo:" autocomplete="false" value ="#{loginUI.usuario.correo}" />
+                            <label>Correo </label>
+                            <p:inputText class ="form-control" placeholder ="Ingresa tu correo:" autocomplete="false" value ="#{loginUI.usuario.correo}" />
                         </div>
                         <div class="form-group">
-                            <p:password class ="form-control" placeholder="Contraseña: " value="#{loginUI.usuario.password}" />
+                            <label>Contraseña</label>
+                            <p:password class ="form-control" placeholder="Ingresa tu contraseña: " value="#{loginUI.usuario.password}"  />
                         </div>
-                        <p:commandButton update="messages" class = "btn btn-success" value ="Iniciar sesion" actionListener ="#{loginUI.login()}" />
+                        <p:commandButton update="messages" class = "btn btn-login" value ="Iniciar sesion" actionListener ="#{loginUI.login()}" />
 
                     </div>
                 </div>
