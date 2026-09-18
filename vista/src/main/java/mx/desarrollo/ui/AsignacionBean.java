@@ -28,7 +28,7 @@ public class AsignacionBean implements Serializable {
     private String diaSemana;
     private LocalTime horaInicio;
     private LocalTime horaFin;
-
+/
     //lista para el dropdown
     public List<Profesor> getProfesores(){
         FacadeProfesor facade = new FacadeProfesor();
