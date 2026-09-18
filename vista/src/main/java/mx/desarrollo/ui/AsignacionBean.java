@@ -12,6 +12,7 @@ import mx.desarrollo.facade.FacadeProfesor;
 import mx.desarrollo.facade.FacadeUnidad;
 
 import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +26,8 @@ public class AsignacionBean implements Serializable {
     private Integer idProfesor;
     private Integer idUnidadAprendizaje;
     private String diaSemana;
-    private Integer horaInicio;
-    private Integer horaFin;
+    private LocalTime horaInicio;
+    private LocalTime horaFin;
 
     //lista para el dropdown
     public List<Profesor> getProfesores(){
@@ -79,22 +80,28 @@ public class AsignacionBean implements Serializable {
 
     public void asignar(){
         try{
+
+            if(!horaInicio.isBefore(horaFin)){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Horario inválido", "La hora de inicio debe ser anterior a la hora de fin."));
+                return;
+            }
             FacadeAsignacion facade = new FacadeAsignacion();
+
             boolean exito = facade.asignarMateria(idProfesor, idUnidadAprendizaje, diaSemana, horaInicio, horaFin);
 
-            if(exito) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Unidad de aprendizaje asignada correctamente"));
+            if(exito){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Unidad de aprendizaje asignada correctamente."));
                 idProfesor = null;
                 idUnidadAprendizaje = null;
                 diaSemana = null;
                 horaInicio = null;
                 horaFin = null;
-            } else {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se puede asignar. Hay un traslapez"));
+            }else{
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Horario no disponible", "No se puede realizar la asignación porque existe un traslape de horario."));
             }
-        } catch (Exception e){
+        }catch(Exception e){
             e.printStackTrace();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", " Ocurrio un error al guardar la asignacion. Intente de nuevo."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Ocurrió un error al guardar la asignación. Intente de nuevo."));
         }
     }
 
@@ -108,11 +115,11 @@ public class AsignacionBean implements Serializable {
     public  String getDiaSemana() { return diaSemana; }
     public void setDiaSemana(String diaSemana) { this.diaSemana = diaSemana; }
 
-    public Integer getHoraInicio() { return horaInicio; }
-    public void setHoraInicio(Integer horaInicio) { this.horaInicio = horaInicio; }
+    public LocalTime getHoraInicio() { return horaInicio; }
+    public void setHoraInicio(LocalTime horaInicio) { this.horaInicio = horaInicio; }
 
-    public Integer getHoraFin() { return horaFin; }
-    public void setHoraFin(Integer horaFin) { this.horaFin = horaFin; }
+    public LocalTime getHoraFin() { return horaFin; }
+    public void setHoraFin(LocalTime horaFin) { this.horaFin = horaFin; }
 
 
 

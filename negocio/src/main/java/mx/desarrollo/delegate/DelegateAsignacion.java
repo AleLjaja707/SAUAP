@@ -3,18 +3,19 @@ package mx.desarrollo.delegate;
 import mx.desarrollo.entity.Asignacion;
 import mx.desarrollo.persistence.integration.ServiceLocator;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public class DelegateAsignacion {
 
     //CRUD DE ASIGNACIONES
 
-    public boolean asignarMateria(Integer idProfesor, Integer idUnidadAprendizaje, String diaSemana, Integer horaInicio, Integer horaFin){
+    public boolean asignarMateria(Integer idProfesor, Integer idUnidadAprendizaje, String diaSemana, LocalTime horaInicio, LocalTime horaFin){
           List<Asignacion> asignacionesProfesor = ServiceLocator.getInstanceAsignacionDAO().findByOneParameter(idProfesor,"idProfesor");
 
         for (Asignacion a : asignacionesProfesor) {
             if (a.getDiaSemana().equalsIgnoreCase(diaSemana)) {
-                boolean traslape = horaInicio < a.getHoraFin() && horaFin > a.getHoraInicio();
+                boolean traslape = horaInicio.isBefore(a.getHoraFin());
                 if (traslape) {
                     return false;
                 }

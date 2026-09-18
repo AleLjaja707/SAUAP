@@ -2,7 +2,7 @@ package mx.desarrollo.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-
+import java.time.LocalTime;
 @Entity
 @Table(name = "asignacion")
 public class Asignacion {
@@ -27,12 +27,12 @@ public class Asignacion {
 
     @NotNull
     @Column(name = "horaInicio", nullable = false)
-    private Integer horaInicio;
+    private LocalTime horaInicio;
 
 
     @NotNull
     @Column(name = "horaFin", nullable = false)
-    private Integer horaFin;
+    private LocalTime horaFin;
 
 
     public Integer getIdAsignacion() {
@@ -59,11 +59,11 @@ public class Asignacion {
         this.idProfesor = idProfesor;
     }
 
-    public Integer getHoraInicio() { return horaInicio; }
-    public void setHoraInicio(Integer horaInicio) { this.horaInicio = horaInicio; }
+    public LocalTime getHoraInicio() { return horaInicio; }
+    public void setHoraInicio(LocalTime horaInicio) { this.horaInicio = horaInicio; }
 
-    public Integer getHoraFin() { return horaFin; }
-    public void setHoraFin(Integer horaFin) { this.horaFin = horaFin; }
+    public LocalTime getHoraFin() { return horaFin; }
+    public void setHoraFin(LocalTime horaFin) { this.horaFin = horaFin; }
 
     public String getDiaSemana() {
         return diaSemana;

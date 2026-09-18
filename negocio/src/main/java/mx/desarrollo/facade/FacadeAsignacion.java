@@ -4,6 +4,7 @@ import mx.desarrollo.delegate.DelegateAsignacion;
 import mx.desarrollo.delegate.DelegateProfesor;
 import mx.desarrollo.entity.Asignacion;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public class FacadeAsignacion {
@@ -13,7 +14,7 @@ public class FacadeAsignacion {
         this.delegateAsignacion = new DelegateAsignacion();
     }
 
-    public boolean asignarMateria(Integer idProfesor, Integer idUnidadAprendizaje, String diaSemana, Integer horaInicio, Integer horaFin){
+    public boolean asignarMateria(Integer idProfesor, Integer idUnidadAprendizaje, String diaSemana, LocalTime horaInicio, LocalTime horaFin){
         return delegateAsignacion.asignarMateria(idProfesor, idUnidadAprendizaje, diaSemana, horaInicio, horaFin);
     }
 
