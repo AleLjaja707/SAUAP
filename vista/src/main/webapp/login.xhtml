@@ -50,14 +50,14 @@
                 text-align: left;
                 opacity: 2;
             }
-            .btn-login{
+            .btn-success{
                 display: block;
                 color: #000;
                 width: 150px;
                 height: 40px;
                 text-align: center;
-                margin: 35px 0 auto;
-                background-color: #EBF0F8;
+                margin: 0 auto!important;
+                background-color: #EBF0F8!important;
               border-radius: 10px;
                 box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             }
@@ -99,7 +99,7 @@
                             <label>Contraseña</label>
                             <p:password class ="form-control" placeholder="Ingresa tu contraseña: " value="#{loginUI.usuario.password}"  />
                         </div>
-                        <p:commandButton update="messages" class = "btn btn-login" value ="Iniciar sesion" actionListener ="#{loginUI.login()}" />
+                        <p:commandButton update="messages" class = "btn btn-success" value ="Iniciar sesion" actionListener ="#{loginUI.login()}" />
 
                     </div>
                 </div>
