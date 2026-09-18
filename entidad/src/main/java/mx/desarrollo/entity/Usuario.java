@@ -21,7 +21,7 @@ public class Usuario {
 
     @Size(max = 50)
     @NotNull
-    @Column(name = "nombreUsuario", nullable = false, length = 50)
+    @Column(name = "correo", nullable = false, length = 50)
     private String correo;
 
     public String getCorreo() {

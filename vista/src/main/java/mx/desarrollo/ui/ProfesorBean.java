@@ -33,6 +33,7 @@ public class ProfesorBean {
         //llamar a facade
         facade.guardarProfesor(profesor);
         System.out.println("BEAN: guardarProfesor");
+        limpiarCampos();
     }
 
     //Consultar lista de profesores
@@ -42,7 +43,12 @@ public class ProfesorBean {
         return facade.obtenerProfesores();
     }
 
-
+    private void limpiarCampos() {
+        nombre = "";
+        apellidoPaterno = "";
+        apellidoPaterno = "";
+        rfc = "";
+    }
 
     //GETTERS Y SETTERS
 

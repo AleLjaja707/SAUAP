@@ -22,24 +22,6 @@
             max-width: 1100px;
         }
 
-        .btn_guardar {
-            display: inline-block;
-            background-color: #c9ddfd;
-            color: #594646;
-            padding: 12px 25px;
-            border-radius: 8px;
-            border: none;
-            font-size: 16px;
-            font-weight: bold;
-            text-decoration: none;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .btn_guardar:hover {
-            background-color: #EBF0F8;
-            color: #594646;
-        }
 
         .labels {
             font-size: 20px;
@@ -51,6 +33,26 @@
             flex-direction: column;
         }
 
+        .buscador_icono {
+            position: relative;
+            display: inline-block;
+        }
+
+        .buscador_icono img {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .buscador_icono .ui-inputfield {
+            padding-left: 35px;
+        }
+
     </style>
 </h:head>
 
@@ -59,10 +61,8 @@
     <h:form>
         <div class="menu_lateral">
 
-            <div class="logo_sauap"> <img src="resources/images/logoAz.png" width="50" height="50"/><span style="font-size: 40px; font-weight: bold;">SAUAP</span></div>
-
+            <div class="logo_sauap"><img src="resources/images/logoAz.png" width="50" height="50"/><span style="font-size: 40px; font-weight: bold;">SAUAP</span></div>
             <div class="menu_opciones">
-
                 <h:link outcome="profesor" styleClass="menu_btn"><img src="resources/images/iconAgreProfe.png" width="30" height="30"/><span style="font-size: 20px; font-weight: bold;">Alta de profesores</span></h:link>
                 <h:link outcome="unidad" styleClass="menu_btn"><img src="resources/images/iconAgreMateria.png" width="30" height="30"/><span style="font-size: 20px; font-weight: bold;">Unidad de aprendizaje</span></h:link>
                 <h:link outcome="asignacion" styleClass="menu_btn"><img src="resources/images/iconAsignar.png" width="30" height="30"/><span style="font-size: 20px; font-weight: bold;">Asignaciones</span></h:link>
@@ -77,49 +77,54 @@
 
     <div class="contenido">
         <h1>Registro de Unidad Académica</h1>
-        <p:growl id="msgs" showDetail="true" sticky="false" life="4000" />
-        <!-- CUADRO DE DATOS DE UNIDAD -->
+        <p:growl id="msgs" showDetail="true" sticky="false" life="4000"/>
+
+
         <div class="registro">
             <h:form id="formUnidad">
+
                 <h2>Datos de Unidad de Aprendizaje</h2>
-
                 <h:panelGroup id="formularioUnidad" layout="block" style="display: flex; gap: 30px; align-items: flex-start;">
-
-                    <div class="campo"><p:outputLabel value="Nombre de la unidad*" styleClass="labels"/><p:inputText value="#{unidadABean.nombre}" placeholder="Ej. Programación"/></div>
-                    <div class="campo"><p:outputLabel value="Horas de clase*" styleClass="labels"/><p:spinner value="#{unidadABean.horasClase}" min="0" max="4"/><h:outputText value="(0 - 4)"/></div>
+                    <div class="campo"><p:outputLabel value="Nombre de la unidad*" styleClass="labels"/><p:inputText value="#{unidadABean.nombre}" placeholder="Ej. Programación" required="true" requiredMessage="El nombre de unidad es obligatorio" maxlength="50"/></div>
+                    <div class="campo"><p:outputLabel value="Horas de clase*" styleClass="labels"/><p:spinner value="#{unidadABean.horasClase}" min="0" max="4" /><h:outputText value="(0 - 4)" /></div>
                     <div class="campo"><p:outputLabel value="Horas de taller*" styleClass="labels"/><p:spinner value="#{unidadABean.horasTaller}" min="0" max="4"/><h:outputText value="(0 - 4)"/></div>
                     <div class="campo"><p:outputLabel value="Horas de laboratorio*" styleClass="labels"/><p:spinner value="#{unidadABean.horasLab}" min="0" max="4"/><h:outputText value="(0 - 4)"/></div>
                 </h:panelGroup>
 
-            <div style="margin-top: 25px; display: flex; gap: 15px;">
-
-                <p:commandButton value="Guardar" action="#{unidadABean.guardarUnidad}" update="formularioUnidad :formTabla:tablaUnidades" resetValues="true"/>
-                <p:commandButton id="botonEliminar" value="Eliminar" update="msgs :formTabla:tablaUnidades" disabled="#{unidadABean.unidadSeleccionada == null}">
-                    <p:confirm header="Confirmar eliminación" message="¿Estás seguro de eliminar esta unidad de aprendizaje?" icon="pi pi-exclamation-triangle" />
-                </p:commandButton>
-                <p:commandButton id="botonModificar" value="Modificar" action="#{unidadABean.modificarUnidad}" process="@form" update=":formTabla:tablaUnidades formularioUnidad botonModificar" disabled="#{unidadABean.unidadSeleccionada == null}"/>
-            </div>
+                <!--Botones-->
+                <div style="margin-top: 25px; display: flex; gap: 15px;">
+                    <p:commandButton id="botonGuardar" value="Guardar" action="#{unidadABean.guardarUnidad}" process="@form" update="@form :formTabla:tablaUnidades :msgs" resetValues="true"/>
+                    <p:commandButton id="botonEliminar" value="Eliminar" action="#{unidadABean.eliminarUnidad}" process="@this" update="@form :formTabla:tablaUnidades :msgs" resetValues="true" disabled="#{unidadABean.unidadSeleccionada == null}">
+                        <p:confirm header="Confirmar eliminación" message="¿Estás seguro de eliminar esta unidad de aprendizaje?" icon="pi pi-exclamation-triangle"/>
+                    </p:commandButton>
+                    <p:commandButton id="botonModificar" value="Modificar" action="#{unidadABean.modificarUnidad}" process="@form" update="@form :formTabla:tablaUnidades :msgs" disabled="#{unidadABean.unidadSeleccionada == null}"/>
+                </div>
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="400">
+                    <p:commandButton value="Sí, eliminar" type="button" icon="pi pi-check" styleClass="ui-confirmdialog-yes"/>
+                    <p:commandButton value="Cancelar" type="button" icon="pi pi-times" styleClass="ui-confirmdialog-no"/>
+                </p:confirmDialog>
             </h:form>
-            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true">
-                <p:commandButton value="Sí, eliminar" icon="pi pi-check" action="#{unidadABean.eliminarUnidad}" update="msgs :formTabla:tablaUnidades" oncomplete="PF('confirmDialog').hide()" />
-                <p:commandButton value="Cancelar" icon="pi pi-times" onclick="PF('confirmDialog').hide()" type="button" />
-            </p:confirmDialog>
         </div>
         <br/><br/><br/><br/>
-    </div>
 
-        <div style="display: flex;align-items: center;justify-content: space-between;max-width: 1000px;margin-bottom: 15px;">
-            <h1 style="margin: 15px;">Unidades de Aprendizaje Registradas</h1>
+        <!--Buscador de unidades-->
+        <div style="display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin-bottom: 15px;">
+            <h1 style="margin: 0;">Unidades de Aprendizaje Registradas</h1>
+            <h:form id="formBusqueda">
+                <div class="buscador_icono">
+                    <img src="resources/images/iconConsultar.png" alt="Buscar"/>
+                    <p:inputText id="buscador" value="#{unidadABean.filtroNombre}" placeholder="Nombre de la unidad">
+                        <p:ajax event="keyup" process="@this" update=":formTabla:tablaUnidades"/>
+                    </p:inputText>
+                </div>
+            </h:form>
+        </div>
 
-
-            <h:form id="formBusqueda"><p:inputText id="buscador" value="#{unidadABean.filtroNombre}" placeholder="Nombre de la unidad">
-                <p:ajax event="keyup" process="@this" update=":formTabla:tablaUnidades"/></p:inputText></h:form>
-
+        <!-- Tabla con unidades registradas -->
 
         <div class="registro">
-
             <h:form id="formTabla">
-                <p:dataTable id="tablaUnidades" value="#{unidadABean.buscarUnidades()}" var="unidad" style="max-width: 800px;" selection="#{unidadABean.unidadSeleccionada}" rowKey="#{unidad.idUnidad}" selectionMode="single" emptyMessage="No se encontraron unidades de aprendizaje">
+                <p:dataTable id="tablaUnidades" value="#{unidadABean.buscarUnidades()}" var="unidad" style="width: 100%;" selection="#{unidadABean.unidadSeleccionada}" rowKey="#{unidad.idUnidad}" selectionMode="single" emptyMessage="No se encontraron unidades de aprendizaje">
                     <p:ajax event="rowSelect" listener="#{unidadABean.cargarUnidadSeleccionada}" update=":formUnidad:formularioUnidad :formUnidad:botonModificar :formUnidad:botonEliminar"/>
                     <p:column headerText="ID"><h:outputText value="#{unidad.idUnidad}"/></p:column>
                     <p:column headerText="Nombre de la unidad"><h:outputText value="#{unidad.nombre}"/></p:column>
@@ -128,8 +133,8 @@
                     <p:column headerText="Horas de Laboratorio"><h:outputText value="#{unidad.horasLaboratorio}"/></p:column>
                 </p:dataTable>
             </h:form>
-
         </div>
     </div>
+
 </h:body>
 </html>

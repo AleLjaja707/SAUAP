@@ -44,6 +44,7 @@ public class UnidadABean implements Serializable {
                         new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
             }
         }
+        limpiarCampos();
 
     }
 
@@ -76,7 +77,8 @@ public class UnidadABean implements Serializable {
             FacadeUnidad facade = new FacadeUnidad();
             facade.modificarUnidad(unidadSeleccionada);
         }
-        }
+        limpiarCampos();
+    }
 
 
     //crear objeto
@@ -91,6 +93,7 @@ public void guardarUnidad(){
     FacadeUnidad facade = new FacadeUnidad();
     //llamar a facade
     facade.agregarUnidad(unidad);
+    limpiarCampos();
 }
 
     //Consultar lista de unidades
@@ -122,7 +125,14 @@ public void guardarUnidad(){
     }
 
 
+    private void limpiarCampos() {
+        nombre = "";
+        horasClase = 0;
+        horasTaller = 0;
+        horasLaboratorio = 0;
 
+        unidadSeleccionada = null;
+    }
 
 
 
