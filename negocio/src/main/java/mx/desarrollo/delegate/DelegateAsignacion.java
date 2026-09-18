@@ -10,20 +10,23 @@ public class DelegateAsignacion {
     //CRUD DE ASIGNACIONES
 
     public boolean asignarMateria(Integer idProfesor, Integer idUnidadAprendizaje, String diaSemana, Integer horaInicio, Integer horaFin){
-          List<Asignacion> asignaciones = ServiceLocator.getInstanceAsignacionDAO().findAll();
+          List<Asignacion> asignacionesProfesor = ServiceLocator.getInstanceAsignacionDAO().findByOneParameter(idProfesor,"idProfesor");
 
-          for(Asignacion asignacion : asignaciones){
-              if(asignacion.getIdProfesor().equals(idProfesor) && asignacion.getIdUnidadA().equals(idUnidadAprendizaje) && asignacion.getDiaSemana().equals(diaSemana) && asignacion.getHorasInicio().equals(horaInicio) && asignacion.getHorasFin().equals(horaFin) ){
-                return false;
-              }
-          }
+        for (Asignacion a : asignacionesProfesor) {
+            if (a.getDiaSemana().equalsIgnoreCase(diaSemana)) {
+                boolean traslape = horaInicio < a.getHoraFin() && horaFin > a.getHoraInicio();
+                if (traslape) {
+                    return false;
+                }
+            }
+        }
 
           Asignacion nuevaAsignacion = new Asignacion();
           nuevaAsignacion.setIdProfesor(idProfesor);
-          nuevaAsignacion.setIdUnidadA(idUnidadAprendizaje);
+          nuevaAsignacion.setIdUnidadAprendizaje(idUnidadAprendizaje);
           nuevaAsignacion.setDiaSemana(diaSemana);
-          nuevaAsignacion.setHorasInicio(horaInicio);
-          nuevaAsignacion.setHorasFin(horaFin);
+          nuevaAsignacion.setHoraInicio(horaInicio);
+          nuevaAsignacion.setHoraFin(horaFin);
 
           ServiceLocator.getInstanceAsignacionDAO().save(nuevaAsignacion);
           return true;
@@ -48,21 +51,6 @@ public class DelegateAsignacion {
     public List<Asignacion> buscarPorUnidad(Integer idUnidad){
         return ServiceLocator.getInstanceAsignacionDAO().findByOneParameter(idUnidad, "idUnidadAprendizaje");
     }
-    //traslape
 
-    public boolean traslape(int idProfesor, String diaSemana, int horaInicio, int horaFin){
-        List<Asignacion> asignaciones = ServiceLocator.getInstanceAsignacionDAO().findAll();
-
-        for (Asignacion asignacion: asignaciones) {
-            if(asignacion.getIdProfesor().equals(idProfesor) && asignacion.getDiaSemana().equals(diaSemana)) {
-
-                if(horaInicio< asignacion.getHorasFin() && horaFin> asignacion.getHorasInicio()) {
-
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 
 }

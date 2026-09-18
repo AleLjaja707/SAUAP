@@ -42,11 +42,11 @@ public class Asignacion {
     public void setIdAsignacion(Integer idAsignacion) {
         this.idAsignacion = idAsignacion;
     }
-    public Integer getIdUnidadA() {
+    public Integer getIdUnidadAprendizaje() {
         return idUnidadAprendizaje;
     }
 
-    public void setIdUnidadA(Integer idUnidad) {
+    public void setIdUnidadAprendizaje(Integer idUnidad) {
         this.idUnidadAprendizaje = idUnidad;
     }
 
@@ -59,21 +59,11 @@ public class Asignacion {
         this.idProfesor = idProfesor;
     }
 
-    public Integer getHorasInicio() {
-        return horaInicio;
-    }
+    public Integer getHoraInicio() { return horaInicio; }
+    public void setHoraInicio(Integer horaInicio) { this.horaInicio = horaInicio; }
 
-    public void setHorasInicio(Integer horasInicio) {
-        this.horaInicio = horasInicio;
-    }
-
-    public Integer getHorasFin() {
-        return horaFin;
-    }
-
-    public void setHorasFin(Integer horasFin) {
-        this.horaFin = horasFin;
-    }
+    public Integer getHoraFin() { return horaFin; }
+    public void setHoraFin(Integer horaFin) { this.horaFin = horaFin; }
 
     public String getDiaSemana() {
         return diaSemana;

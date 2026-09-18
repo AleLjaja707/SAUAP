@@ -30,12 +30,61 @@
 
     <div class="contenido">
         <h1>Asignación de Unidad a Profesor</h1>
-        <p>Aqui se colocan los datos para la asignacion</p>
+
+            <div class="registro">
+                <h:form id="formAsignacion">
+                    <p:growl id="msgs" showDetail="true" sticky="false" life="4000" />
+                    <h2>Nueva Asignación</h2>
+
+                    <h:panelGroup layout="block" style="display: flex; gap: 30px; align-items: flex-start; flex-wrap: wrap;">
+
+                        <div class="campo">
+                            <p:outputLabel value="Profesor*" styleClass="labels"/>
+                            <p:selectOneMenu value="#{asignacionBean.idProfesor}">
+                                <f:selectItem itemLabel="Seleccione un profesor" itemValue="#{null}"/>
+                                <f:selectItems value="#{asignacionBean.profesores}" var="p"
+                                               itemLabel="#{p.nombre} #{p.apellidoP} #{p.apellidoM}" itemValue="#{p.id}"/>
+                            </p:selectOneMenu>
+                        </div>
+
+                        <div class="campo">
+                            <p:outputLabel value="Unidad de Aprendizaje*" styleClass="labels"/>
+                            <p:selectOneMenu value="#{asignacionBean.idUnidadAprendizaje}">
+                                <f:selectItem itemLabel="Seleccione una unidad" itemValue="#{null}"/>
+                                <f:selectItems value="#{asignacionBean.unidades}" var="u"
+                                               itemLabel="#{u.nombre}" itemValue="#{u.idUnidad}"/>
+                            </p:selectOneMenu>
+                        </div>
+
+                        <div class="campo">
+                            <p:outputLabel value="Día*" styleClass="labels"/>
+                            <p:selectOneMenu value="#{asignacionBean.diaSemana}">
+                                <f:selectItem itemLabel="Seleccione un día" itemValue="#{null}"/>
+                                <f:selectItems value="#{asignacionBean.diasSemana}"/>
+                            </p:selectOneMenu>
+                        </div>
+
+                        <div class="campo">
+                            <p:outputLabel value="Hora Inicio*" styleClass="labels"/>
+                            <p:spinner value="#{asignacionBean.horaInicio}" min="0" max="23"/>
+                        </div>
+
+                        <div class="campo">
+                            <p:outputLabel value="Hora Fin*" styleClass="labels"/>
+                            <p:spinner value="#{asignacionBean.horaFin}" min="0" max="23"/>
+                        </div>
+
+                    </h:panelGroup>
+
+                    <div style="margin-top: 25px;">
+                        <p:commandButton value="Asignar" action="#{asignacionBean.asignar}" update="msgs" process="@form"/>
+                    </div>
+                </h:form>
+            </div>
+
+            <br/><br/>
     </div>
+    </h:body>
+    </html>
 
-</h:body>
-
-
-
-</html>
 
