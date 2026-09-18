@@ -18,6 +18,7 @@ public class DelegateAsignacion {
                 boolean traslape = horaInicio.isBefore(a.getHoraFin());
                 if (traslape) {
                     return false;
+
                 }
             }
         }
