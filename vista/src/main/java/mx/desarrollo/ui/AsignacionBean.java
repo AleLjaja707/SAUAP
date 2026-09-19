@@ -118,6 +118,26 @@ public class AsignacionBean implements Serializable {
         }
     }
 
+    public String getUnidadesProfesor(Integer idProfesor) {
+        List<Asignacion> asginaciones = getAsignaciones();
+        String unidades="";
+        for(Asignacion a : getAsignaciones()) {
+            if(a.getIdProfesor().equals(idProfesor) ){
+
+                String nombreUnidad=getNombreUnidad(a.getIdUnidadAprendizaje());
+
+                if(!unidades.contains(nombreUnidad)){
+                    if(!unidades.isEmpty()) {
+                        unidades += ", ";
+                    }
+
+                    unidades +=nombreUnidad;
+                }
+            }
+        }
+        return unidades;
+    }
+
   //getter, setters
     public Integer getIdProfesor() { return idProfesor; }
     public void setIdProfesor(Integer idProfesor) { this.idProfesor = idProfesor; }
