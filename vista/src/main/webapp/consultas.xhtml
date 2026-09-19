@@ -9,14 +9,20 @@
         .tabla-consultas {
             margin: 10px 0 auto;
             border: 1px #D8CACA!important;
-            border-radius:8px;
+            border-radius:8px!important;
         }
         .boton-revisar {
             display:block;
-            width: 60px;
-            margin: 70px;
+            width: 70px;
+            margin: 70px auto!important;
             background-color:#EBF0F8!important;
-            border-radius: 5px;
+            border-radius: 5px!important;
+
+            color: #000!important;
+
+            height: 40px;
+            text-align: center;
+
         }
     </style>
 
@@ -48,16 +54,21 @@
 
     <div class="contenido">
         <h1>Consultas</h1>
-        <p:dataTable value="#{profesorBean.profesores}" var="profesor" styleClass="tabla-consultas" emptyMessage="No hay profesores registrados">
-            <p:column headerText="Nombre">
+        <p:dataTable value="#{asignacionBean.asignaciones}"
+                     var="asignacion"
+                     styleClass="tabla-consultas"
+                     emptyMessage="No hay asignaciones registradas">
 
-                <h:outputText value="#{profesor.nombre} #{profesor.apellidoP} #{profesor.apellidoM}"/>
+            <p:column headerText="Profesor"
+                      sortBy="#{asignacionBean.getNombreProfesor(asignacion.idProfesor)}">
+
+                <h:outputText value="#{asignacionBean.getNombreProfesor(asignacion.idProfesor)}"/>
 
             </p:column>
 
-            <p:column headerText="Unidades de aprendizaje">
+            <p:column headerText="Unidad de aprendizaje">
 
-                <h:outputText value="#{asignacionBean.getNombreUnidad(asignacionBean.idUnidadAprendizaje)}"/>
+                <h:outputText value="#{asignacionBean.getNombreUnidad(asignacion.idUnidadAprendizaje)}"/>
 
             </p:column>
 
