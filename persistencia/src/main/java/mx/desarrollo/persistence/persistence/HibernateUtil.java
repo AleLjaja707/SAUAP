@@ -17,10 +17,12 @@ public class HibernateUtil {
     private static EntityManagerFactory buildEntityManagerFactory() {
         try {
             return Persistence.createEntityManagerFactory("persistencePU");
-        } catch (Throwable ex) {
-            System.err.println("Error creando EntityManagerFactory: " + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
+        }  catch (Throwable ex) {
+        System.err.println("Error creando EntityManagerFactory:");
+        ex.printStackTrace();
+        throw new ExceptionInInitializerError(ex);
+    }
+
     }
 
     public static EntityManagerFactory getEntityManagerFactory() {

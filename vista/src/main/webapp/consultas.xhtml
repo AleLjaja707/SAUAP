@@ -12,18 +12,16 @@
             border-radius:8px!important;
         }
         .boton-revisar {
-            display:block;
-            width: 70px;
-            margin: 70px auto!important;
+            display: inline-block!important;
+            width: 120px;
             background-color:#EBF0F8!important;
             border-radius: 5px!important;
-
             color: #000!important;
-
             height: 40px;
             text-align: center;
-
+            margin: 120px 0 auto!important;
         }
+
     </style>
 
 
@@ -59,12 +57,11 @@
                      styleClass="tabla-consultas"
                      emptyMessage="No hay asignaciones registradas">
 
-            <p:column headerText="Profesor"
-                      sortBy="#{asignacionBean.getNombreProfesor(asignacion.idProfesor)}">
-
+            <p:column headerText="Profesor"  rowGroupMode="subheader"  groupBy="#{asignacionBean.getNombreProfesor(asignacion.idProfesor)}">
                 <h:outputText value="#{asignacionBean.getNombreProfesor(asignacion.idProfesor)}"/>
-
             </p:column>
+
+
 
             <p:column headerText="Unidad de aprendizaje">
 
@@ -73,7 +70,9 @@
             </p:column>
 
         </p:dataTable>
-        <p:commandButton value="Revisar" styleClass="boton-revisar"/>
+        <div style="text-align:center; margin-top:20px;">
+            <p:commandButton value="Revisar" styleClass="boton-revisar"/>
+        </div>
     </div>
 
 </h:body>

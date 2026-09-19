@@ -15,6 +15,7 @@ import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Comparator;
 
 @Named
 @ViewScoped
@@ -54,8 +55,20 @@ public class AsignacionBean implements Serializable {
     //asignaciones ya existentes
     public List<Asignacion> getAsignaciones(){
         FacadeAsignacion facade = new FacadeAsignacion();
-        return facade.obtenerAsignaciones();
+        List<Asignacion> asignaciones = facade.obtenerAsignaciones();
+
+        asignaciones.sort(Comparator.comparing(
+                a -> getNombreProfesor(a.getIdProfesor())
+        ));
+
+        return asignaciones;
+
     }
+
+
+
+
+
     //busca por id
     public String getNombreProfesor(int idProfesor){
         List<Profesor> profesores = getProfesores();
