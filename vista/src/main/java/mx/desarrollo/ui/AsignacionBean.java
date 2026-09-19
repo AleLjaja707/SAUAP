@@ -154,6 +154,6 @@ public class AsignacionBean implements Serializable {
     public LocalTime getHoraFin() { return horaFin; }
     public void setHoraFin(LocalTime horaFin) { this.horaFin = horaFin; }
 
-
-
 }
+
+

@@ -4,6 +4,7 @@ import mx.desarrollo.entity.Profesor;
 import mx.desarrollo.facade.FacadeProfesor;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
+import java.util.Comparator;
 
 import java.util.List;
 
@@ -39,8 +40,10 @@ public class ProfesorBean {
     //Consultar lista de profesores
     public List<Profesor> getProfesores(){
         FacadeProfesor facade = new FacadeProfesor();
-        //llamar a facade
-        return facade.obtenerProfesores();
+        List<Profesor> profesores = facade.obtenerProfesores();
+        profesores.sort(Comparator.comparing(Profesor::getNombre, String.CASE_INSENSITIVE_ORDER).thenComparing(Profesor::getApellidoP, String.CASE_INSENSITIVE_ORDER));
+
+        return profesores;
     }
 
     private void limpiarCampos() {
