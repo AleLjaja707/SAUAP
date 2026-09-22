@@ -4,6 +4,8 @@ import mx.desarrollo.entity.Profesor;
 import mx.desarrollo.facade.FacadeProfesor;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
+import mx.desarrollo.integration.ServiceFacadeLocator;
+
 import java.util.Comparator;
 
 import java.util.List;
@@ -29,26 +31,23 @@ public class ProfesorBean {
         profesor.setApellidoM(apellidoMaterno);
         profesor.setRfc(rfc);
 
-        FacadeProfesor facade = new FacadeProfesor();
+        FacadeProfesor facade = ServiceFacadeLocator.getInstanceFacadeProfesor();
 
         //llamar a facade
         facade.guardarProfesor(profesor);
-        System.out.println("BEAN: guardarProfesor");
         limpiarCampos();
     }
 
     //Consultar lista de profesores
     public List<Profesor> getProfesores(){
-        FacadeProfesor facade = new FacadeProfesor();
-        List<Profesor> profesores = facade.obtenerProfesores();
-        profesores.sort(Comparator.comparing(Profesor::getNombre, String.CASE_INSENSITIVE_ORDER).thenComparing(Profesor::getApellidoP, String.CASE_INSENSITIVE_ORDER));
+        FacadeProfesor facade = ServiceFacadeLocator.getInstanceFacadeProfesor();
 
-        return profesores;
+        return facade.obtenerProfesoresOrdenados();
     }
 
     private void limpiarCampos() {
         nombre = "";
-        apellidoPaterno = "";
+        apellidoMaterno = "";
         apellidoPaterno = "";
         rfc = "";
     }

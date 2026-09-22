@@ -7,6 +7,7 @@ import jakarta.inject.Named;
 
 import mx.desarrollo.entity.Unidad_aprendizaje;
 import mx.desarrollo.facade.FacadeUnidad;
+import mx.desarrollo.integration.ServiceFacadeLocator;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class UnidadABean implements Serializable {
     public void eliminarUnidad(){
         if(unidadSeleccionada != null) {
             try {
-                FacadeUnidad facade = new FacadeUnidad();
+                FacadeUnidad facade = ServiceFacadeLocator.getInstanceFacadeUnidad();
                 facade.eliminarUnidad(unidadSeleccionada);
 
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Exito", "Unidad de aprendizaje eliminada correctamente"));
@@ -74,7 +75,7 @@ public class UnidadABean implements Serializable {
         if (unidadSeleccionada != null) {
             setNuevosAtributos();
 
-            FacadeUnidad facade = new FacadeUnidad();
+            FacadeUnidad facade = ServiceFacadeLocator.getInstanceFacadeUnidad();
             facade.modificarUnidad(unidadSeleccionada);
         }
         limpiarCampos();
@@ -90,7 +91,7 @@ public void guardarUnidad(){
     unidad.setHorasTaller(horasTaller);
     unidad.setHorasLaboratorio(horasLaboratorio);
 
-    FacadeUnidad facade = new FacadeUnidad();
+    FacadeUnidad facade = ServiceFacadeLocator.getInstanceFacadeUnidad();
     //llamar a facade
     facade.agregarUnidad(unidad);
     limpiarCampos();
@@ -98,7 +99,7 @@ public void guardarUnidad(){
 
     //Consultar lista de unidades
     public List<Unidad_aprendizaje> getUnidades(){
-        FacadeUnidad facade = new FacadeUnidad();
+        FacadeUnidad facade = ServiceFacadeLocator.getInstanceFacadeUnidad();
     //llamar a facade
     return facade.obtenerUnidades();
     }

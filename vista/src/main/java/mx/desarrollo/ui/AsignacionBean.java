@@ -10,6 +10,7 @@ import mx.desarrollo.entity.Unidad_aprendizaje;
 import mx.desarrollo.facade.FacadeAsignacion;
 import mx.desarrollo.facade.FacadeProfesor;
 import mx.desarrollo.facade.FacadeUnidad;
+import mx.desarrollo.integration.ServiceFacadeLocator;
 
 import java.io.Serializable;
 import java.time.LocalTime;
@@ -32,12 +33,12 @@ public class AsignacionBean implements Serializable {
 
     //lista para el dropdown
     public List<Profesor> getProfesores(){
-        FacadeProfesor facade = new FacadeProfesor();
+        FacadeProfesor facade = ServiceFacadeLocator.getInstanceFacadeProfesor();
         return facade.obtenerProfesores();
     }
 
     public List<Unidad_aprendizaje> getUnidades(){
-        FacadeUnidad facade = new FacadeUnidad();
+        FacadeUnidad facade = ServiceFacadeLocator.getInstanceFacadeUnidad();
         return facade.obtenerUnidades();
     }
 
@@ -54,7 +55,7 @@ public class AsignacionBean implements Serializable {
 
     //asignaciones ya existentes
     public List<Asignacion> getAsignaciones(){
-        FacadeAsignacion facade = new FacadeAsignacion();
+        FacadeAsignacion facade =ServiceFacadeLocator.getInstanceFacadeAsignacion();
         List<Asignacion> asignaciones = facade.obtenerAsignaciones();
 
         asignaciones.sort(Comparator.comparing(
@@ -98,7 +99,7 @@ public class AsignacionBean implements Serializable {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Horario inválido", "La hora de inicio debe ser anterior a la hora de fin."));
                 return;
             }
-            FacadeAsignacion facade = new FacadeAsignacion();
+            FacadeAsignacion facade = ServiceFacadeLocator.getInstanceFacadeAsignacion();
 
             boolean exito = facade.asignarMateria(idProfesor, idUnidadAprendizaje, diaSemana, horaInicio, horaFin);
 
@@ -116,6 +117,7 @@ public class AsignacionBean implements Serializable {
             e.printStackTrace();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Ocurrió un error al guardar la asignación. Intente de nuevo."));
         }
+
     }
 
     public String getUnidadesProfesor(Integer idProfesor) {
@@ -137,6 +139,8 @@ public class AsignacionBean implements Serializable {
         }
         return unidades;
     }
+
+
 
   //getter, setters
     public Integer getIdProfesor() { return idProfesor; }
