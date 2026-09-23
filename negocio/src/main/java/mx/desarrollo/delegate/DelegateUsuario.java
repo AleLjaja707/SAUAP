@@ -8,15 +8,14 @@ import java.util.List;
 
 public class DelegateUsuario {
     public Usuario login(String correo, String password){
-        Usuario usuario = new Usuario();
         List<Usuario> usuarios = ServiceLocator.getInstanceUsuarioDAO().findAll();
 
         for(Usuario us:usuarios){
-            if(us.getCorreo().equalsIgnoreCase(correo) && us.getPassword().equalsIgnoreCase(password)){
-                usuario = us;
+            if(us.getCorreo().equalsIgnoreCase(correo) && us.getPassword().equals(password)){
+                return us;
             }
         }
-        return usuario;
+        return null;//Si no se encuentra el usuario
     }
 
     public void saveUsuario(Usuario usuario){

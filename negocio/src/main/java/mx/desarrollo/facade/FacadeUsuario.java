@@ -8,7 +8,6 @@ public class FacadeUsuario {
     private final DelegateUsuario delegateUsuario;
 
     public FacadeUsuario() {
-
         this.delegateUsuario = new DelegateUsuario();
     }
 
@@ -19,11 +18,6 @@ public class FacadeUsuario {
         }
         if (password == null || password.isBlank()) {
             throw new IllegalArgumentException("La contraseña es obligatoria");
-        }
-
-        Usuario usuario = delegateUsuario.login(correo, password);
-        if (usuario == null) {
-            throw new IllegalArgumentException("Credenciales incorrectas");
         }
 
         return delegateUsuario.login(correo, password);
